@@ -26,7 +26,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="NUMBER_OF_POSTS" elementType="Argument">
             <stringProp name="Argument.name">NUMBER_OF_POSTS</stringProp>
-            <stringProp name="Argument.value">${__P(NUMBER_OF_POSTS,10)}</stringProp>
+            <stringProp name="Argument.value">${__P(NUMBER_OF_POSTS,1000)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="COUNTER" elementType="Argument">
@@ -666,6 +666,17 @@
             <boolProp name="TransactionController.parent">true</boolProp>
           </TransactionController>
           <hashTree>
+            <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+              <intProp name="ActionProcessor.action">1</intProp>
+              <intProp name="ActionProcessor.target">0</intProp>
+              <stringProp name="ActionProcessor.duration">0</stringProp>
+            </TestAction>
+            <hashTree>
+              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                <stringProp name="ConstantTimer.delay">50</stringProp>
+              </ConstantTimer>
+              <hashTree/>
+            </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="476 /blog/api/posts" enabled="true">
               <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
@@ -742,6 +753,17 @@
               <ResultAction guiclass="ResultActionGui" testclass="ResultAction" testname="Result Status Action Handler" enabled="true">
                 <intProp name="OnError.action">5</intProp>
               </ResultAction>
+              <hashTree/>
+            </hashTree>
+            <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+              <intProp name="ActionProcessor.action">1</intProp>
+              <intProp name="ActionProcessor.target">0</intProp>
+              <stringProp name="ActionProcessor.duration">0</stringProp>
+            </TestAction>
+            <hashTree>
+              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                <stringProp name="ConstantTimer.delay">50</stringProp>
+              </ConstantTimer>
               <hashTree/>
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="477 /blog/api/customfields ${__counter(FALSE,COUNTER)}" enabled="true">
