@@ -698,7 +698,7 @@
                 <collectionProp name="Arguments.arguments">
                   <elementProp name="" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">{&quot;Id&quot;:&quot;&quot;,&quot;Title&quot;:&quot;Own title of the post&quot;,&quot;Author&quot;:&quot;${LOGIN}&quot;,&quot;Content&quot;:&quot;&lt;p&gt;${__substring(${LOREM},0,${__Random(50,1000,)},)}&lt;/p&gt;&quot;,&quot;DateCreated&quot;:&quot;${DATE} 16:49&quot;,&quot;Slug&quot;:&quot;own-title-of-the-post&quot;,&quot;Categories&quot;:[],&quot;Tags&quot;:[],&quot;Comments&quot;:&quot;&quot;,&quot;HasCommentsEnabled&quot;:true,&quot;IsPublished&quot;:true}</stringProp>
+                    <stringProp name="Argument.value">{&quot;Id&quot;:&quot;&quot;,&quot;Title&quot;:&quot;Own title of the post-${__Random(1,10,RANDOM_NUMBER)}&quot;,&quot;Author&quot;:&quot;${LOGIN}&quot;,&quot;Content&quot;:&quot;&lt;p&gt;${__substring(${LOREM},0,${__Random(50,1000,)},)}&lt;/p&gt;&quot;,&quot;DateCreated&quot;:&quot;${DATE} 16:49&quot;,&quot;Slug&quot;:&quot;own-title-of-the-post-${RANDOM_NUMBER}&quot;,&quot;Categories&quot;:[],&quot;Tags&quot;:[],&quot;Comments&quot;:&quot;&quot;,&quot;HasCommentsEnabled&quot;:true,&quot;IsPublished&quot;:true}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                   </elementProp>
                 </collectionProp>
