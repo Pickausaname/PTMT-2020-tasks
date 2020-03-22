@@ -113,17 +113,14 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Home page" enabled="true">
-          <boolProp name="TransactionController.includeTimers">false</boolProp>
-          <boolProp name="TransactionController.parent">true</boolProp>
-        </TransactionController>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Home page" enabled="true"/>
         <hashTree>
           <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Home page MC" enabled="true">
             <collectionProp name="ModuleController.node_path">
               <stringProp name="764597751">Test Plan</stringProp>
               <stringProp name="535912203">BlogEng_task3</stringProp>
               <stringProp name="170071582">Test Fragment</stringProp>
-              <stringProp name="-232053456">Home Page</stringProp>
+              <stringProp name="336909050">Open home page</stringProp>
             </collectionProp>
           </ModuleController>
           <hashTree/>
@@ -174,17 +171,14 @@
             <intProp name="InterleaveControl.style">1</intProp>
           </RandomController>
           <hashTree>
-            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open Home page" enabled="true">
-              <boolProp name="TransactionController.includeTimers">false</boolProp>
-              <boolProp name="TransactionController.parent">true</boolProp>
-            </TransactionController>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Open Home page" enabled="true"/>
             <hashTree>
-              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Home Page" enabled="true">
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Home Page MC" enabled="true">
                 <collectionProp name="ModuleController.node_path">
                   <stringProp name="764597751">Test Plan</stringProp>
                   <stringProp name="535912203">BlogEng_task3</stringProp>
                   <stringProp name="170071582">Test Fragment</stringProp>
-                  <stringProp name="-232053456">Home Page</stringProp>
+                  <stringProp name="336909050">Open home page</stringProp>
                 </collectionProp>
               </ModuleController>
               <hashTree/>
@@ -199,358 +193,42 @@
                 </ConstantTimer>
                 <hashTree/>
               </hashTree>
-              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Random Page" enabled="true">
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Random Page MC" enabled="true">
                 <collectionProp name="ModuleController.node_path">
                   <stringProp name="764597751">Test Plan</stringProp>
                   <stringProp name="535912203">BlogEng_task3</stringProp>
                   <stringProp name="170071582">Test Fragment</stringProp>
-                  <stringProp name="-310225558">Open random page+Open post script</stringProp>
+                  <stringProp name="1305995030">Open random page</stringProp>
                 </collectionProp>
               </ModuleController>
               <hashTree/>
-            </hashTree>
-            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open Random Date" enabled="true">
-              <boolProp name="TransactionController.includeTimers">false</boolProp>
-              <boolProp name="TransactionController.parent">true</boolProp>
-            </TransactionController>
-            <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="123 /blog/date/default" enabled="true">
-                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
-                  <collectionProp name="Arguments.arguments"/>
-                </elementProp>
-                <stringProp name="HTTPSampler.domain"></stringProp>
-                <stringProp name="HTTPSampler.port"></stringProp>
-                <stringProp name="HTTPSampler.protocol"></stringProp>
-                <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/blog/${__RandomDate(yyyy/MM/dd,2019/09/01,2019/10/01,,)}/default</stringProp>
-                <stringProp name="HTTPSampler.method">GET</stringProp>
-                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-                <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              </HTTPSamplerProxy>
-              <hashTree>
-                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                  <collectionProp name="HeaderManager.headers">
-                    <elementProp name="Accept-Language" elementType="Header">
-                      <stringProp name="Header.name">Accept-Language</stringProp>
-                      <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
-                    </elementProp>
-                    <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
-                      <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
-                      <stringProp name="Header.value">1</stringProp>
-                    </elementProp>
-                    <elementProp name="Accept-Encoding" elementType="Header">
-                      <stringProp name="Header.name">Accept-Encoding</stringProp>
-                      <stringProp name="Header.value">gzip, deflate</stringProp>
-                    </elementProp>
-                    <elementProp name="User-Agent" elementType="Header">
-                      <stringProp name="Header.name">User-Agent</stringProp>
-                      <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0</stringProp>
-                    </elementProp>
-                    <elementProp name="Accept" elementType="Header">
-                      <stringProp name="Header.name">Accept</stringProp>
-                      <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</stringProp>
-                    </elementProp>
-                  </collectionProp>
-                </HeaderManager>
-                <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get PAGE" enabled="true">
-                  <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                  <stringProp name="RegexExtractor.refname">PAGE</stringProp>
-                  <stringProp name="RegexExtractor.regex">${PAGE_RE}</stringProp>
-                  <stringProp name="RegexExtractor.template">$1$</stringProp>
-                  <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-                  <stringProp name="RegexExtractor.match_number">0</stringProp>
-                </RegexExtractor>
-                <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get POST" enabled="true">
-                  <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                  <stringProp name="RegexExtractor.refname">POST</stringProp>
-                  <stringProp name="RegexExtractor.regex">href=&quot;(.*?\/post(?!.*?[\#\?].*?).*?)&quot;</stringProp>
-                  <stringProp name="RegexExtractor.template">$1$</stringProp>
-                  <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-                  <stringProp name="RegexExtractor.match_number">${__Random(0,1,)}</stringProp>
-                </RegexExtractor>
-                <hashTree/>
-              </hashTree>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-                <intProp name="ActionProcessor.action">1</intProp>
-                <intProp name="ActionProcessor.target">0</intProp>
-                <stringProp name="ActionProcessor.duration">0</stringProp>
-              </TestAction>
-              <hashTree>
-                <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                  <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
-                </ConstantTimer>
-                <hashTree/>
-              </hashTree>
-              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Random Page" enabled="true">
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open post script MC" enabled="true">
                 <collectionProp name="ModuleController.node_path">
                   <stringProp name="764597751">Test Plan</stringProp>
                   <stringProp name="535912203">BlogEng_task3</stringProp>
                   <stringProp name="170071582">Test Fragment</stringProp>
-                  <stringProp name="-310225558">Open random page+Open post script</stringProp>
-                </collectionProp>
-              </ModuleController>
-              <hashTree/>
-            </hashTree>
-            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open Pre Date" enabled="true">
-              <boolProp name="TransactionController.includeTimers">false</boolProp>
-              <boolProp name="TransactionController.parent">true</boolProp>
-            </TransactionController>
-            <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="123 /blog/2019/10/24/default" enabled="true">
-                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
-                  <collectionProp name="Arguments.arguments"/>
-                </elementProp>
-                <stringProp name="HTTPSampler.domain"></stringProp>
-                <stringProp name="HTTPSampler.port"></stringProp>
-                <stringProp name="HTTPSampler.protocol"></stringProp>
-                <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/blog/${__strReplace(${DATE},-,/,)}/default</stringProp>
-                <stringProp name="HTTPSampler.method">GET</stringProp>
-                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-                <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              </HTTPSamplerProxy>
-              <hashTree>
-                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                  <collectionProp name="HeaderManager.headers">
-                    <elementProp name="Accept-Language" elementType="Header">
-                      <stringProp name="Header.name">Accept-Language</stringProp>
-                      <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
-                    </elementProp>
-                    <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
-                      <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
-                      <stringProp name="Header.value">1</stringProp>
-                    </elementProp>
-                    <elementProp name="Accept-Encoding" elementType="Header">
-                      <stringProp name="Header.name">Accept-Encoding</stringProp>
-                      <stringProp name="Header.value">gzip, deflate</stringProp>
-                    </elementProp>
-                    <elementProp name="User-Agent" elementType="Header">
-                      <stringProp name="Header.name">User-Agent</stringProp>
-                      <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0</stringProp>
-                    </elementProp>
-                    <elementProp name="Accept" elementType="Header">
-                      <stringProp name="Header.name">Accept</stringProp>
-                      <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</stringProp>
-                    </elementProp>
-                  </collectionProp>
-                </HeaderManager>
-                <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get PAGE" enabled="true">
-                  <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                  <stringProp name="RegexExtractor.refname">PAGE</stringProp>
-                  <stringProp name="RegexExtractor.regex">${PAGE_RE}</stringProp>
-                  <stringProp name="RegexExtractor.template">$1$</stringProp>
-                  <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-                  <stringProp name="RegexExtractor.match_number">0</stringProp>
-                </RegexExtractor>
-                <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get POST" enabled="true">
-                  <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                  <stringProp name="RegexExtractor.refname">POST</stringProp>
-                  <stringProp name="RegexExtractor.regex">href=&quot;(.*?\/post(?!.*?[\#\?].*?).*?)&quot;</stringProp>
-                  <stringProp name="RegexExtractor.template">$1$</stringProp>
-                  <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-                  <stringProp name="RegexExtractor.match_number">${__Random(0,1,)}</stringProp>
-                </RegexExtractor>
-                <hashTree/>
-              </hashTree>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-                <intProp name="ActionProcessor.action">1</intProp>
-                <intProp name="ActionProcessor.target">0</intProp>
-                <stringProp name="ActionProcessor.duration">0</stringProp>
-              </TestAction>
-              <hashTree>
-                <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                  <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
-                </ConstantTimer>
-                <hashTree/>
-              </hashTree>
-              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Module Controller" enabled="true">
-                <collectionProp name="ModuleController.node_path">
-                  <stringProp name="764597751">Test Plan</stringProp>
-                  <stringProp name="535912203">BlogEng_task3</stringProp>
-                  <stringProp name="170071582">Test Fragment</stringProp>
-                  <stringProp name="-310225558">Open random page+Open post script</stringProp>
-                </collectionProp>
-              </ModuleController>
-              <hashTree/>
-            </hashTree>
-            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Search by name" enabled="true">
-              <boolProp name="TransactionController.includeTimers">false</boolProp>
-              <boolProp name="TransactionController.parent">true</boolProp>
-            </TransactionController>
-            <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="150 /blog/search" enabled="true">
-                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
-                  <collectionProp name="Arguments.arguments">
-                    <elementProp name="q" elementType="HTTPArgument">
-                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                      <stringProp name="Argument.name">q</stringProp>
-                      <stringProp name="Argument.value">Own%20title%20of%20the%20post-${__Random(1,10,)}</stringProp>
-                      <stringProp name="Argument.metadata">=</stringProp>
-                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    </elementProp>
-                  </collectionProp>
-                </elementProp>
-                <stringProp name="HTTPSampler.domain"></stringProp>
-                <stringProp name="HTTPSampler.port"></stringProp>
-                <stringProp name="HTTPSampler.protocol"></stringProp>
-                <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/blog/search</stringProp>
-                <stringProp name="HTTPSampler.method">GET</stringProp>
-                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-                <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              </HTTPSamplerProxy>
-              <hashTree>
-                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                  <collectionProp name="HeaderManager.headers">
-                    <elementProp name="Accept-Language" elementType="Header">
-                      <stringProp name="Header.name">Accept-Language</stringProp>
-                      <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
-                    </elementProp>
-                    <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
-                      <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
-                      <stringProp name="Header.value">1</stringProp>
-                    </elementProp>
-                    <elementProp name="Accept-Encoding" elementType="Header">
-                      <stringProp name="Header.name">Accept-Encoding</stringProp>
-                      <stringProp name="Header.value">gzip, deflate</stringProp>
-                    </elementProp>
-                    <elementProp name="User-Agent" elementType="Header">
-                      <stringProp name="Header.name">User-Agent</stringProp>
-                      <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0</stringProp>
-                    </elementProp>
-                    <elementProp name="Accept" elementType="Header">
-                      <stringProp name="Header.name">Accept</stringProp>
-                      <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</stringProp>
-                    </elementProp>
-                  </collectionProp>
-                </HeaderManager>
-                <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get POST" enabled="true">
-                  <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                  <stringProp name="RegexExtractor.refname">POST</stringProp>
-                  <stringProp name="RegexExtractor.regex">href=&quot;.*?(\/blog\/post.*?)&quot;</stringProp>
-                  <stringProp name="RegexExtractor.template">$1$</stringProp>
-                  <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-                  <stringProp name="RegexExtractor.match_number">${__Random(0,1,)}</stringProp>
-                </RegexExtractor>
-                <hashTree/>
-              </hashTree>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-                <intProp name="ActionProcessor.action">1</intProp>
-                <intProp name="ActionProcessor.target">0</intProp>
-                <stringProp name="ActionProcessor.duration">0</stringProp>
-              </TestAction>
-              <hashTree>
-                <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                  <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
-                </ConstantTimer>
-                <hashTree/>
-              </hashTree>
-              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Module Controller" enabled="true">
-                <collectionProp name="ModuleController.node_path">
-                  <stringProp name="764597751">Test Plan</stringProp>
-                  <stringProp name="535912203">BlogEng_task3</stringProp>
-                  <stringProp name="170071582">Test Fragment</stringProp>
-                  <stringProp name="-310225558">Open random page+Open post script</stringProp>
                   <stringProp name="-1638030443">Open post script</stringProp>
                 </collectionProp>
               </ModuleController>
               <hashTree/>
             </hashTree>
-            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open Large Calendar" enabled="true">
-              <boolProp name="TransactionController.includeTimers">false</boolProp>
-              <boolProp name="TransactionController.parent">true</boolProp>
-            </TransactionController>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Open Random Date" enabled="true"/>
             <hashTree>
-              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Module Controller" enabled="true">
-                <collectionProp name="ModuleController.node_path">
-                  <stringProp name="764597751">Test Plan</stringProp>
-                  <stringProp name="535912203">BlogEng_task3</stringProp>
-                  <stringProp name="170071582">Test Fragment</stringProp>
-                  <stringProp name="-1585226077">Large calendar</stringProp>
-                </collectionProp>
-              </ModuleController>
-              <hashTree/>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-                <intProp name="ActionProcessor.action">1</intProp>
-                <intProp name="ActionProcessor.target">0</intProp>
-                <stringProp name="ActionProcessor.duration">0</stringProp>
-              </TestAction>
+              <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open date" enabled="true">
+                <boolProp name="TransactionController.includeTimers">false</boolProp>
+                <boolProp name="TransactionController.parent">true</boolProp>
+              </TransactionController>
               <hashTree>
-                <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                  <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
-                </ConstantTimer>
-                <hashTree/>
-              </hashTree>
-              <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="WC" enabled="true">
-                <stringProp name="WhileController.condition">${__groovy(vars.get(&quot;POST&quot;)==&quot;NOT_FOUND&quot; &amp;&amp; vars.get(&quot;__jm__WC__idx&quot;).toInteger()&lt;6,)}</stringProp>
-              </WhileController>
-              <hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/blog/calendar/default.aspx" enabled="true">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="123 /blog/date/default" enabled="true">
                   <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
-                    <collectionProp name="Arguments.arguments">
-                      <elementProp name="__EVENTTARGET" elementType="HTTPArgument">
-                        <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                        <stringProp name="Argument.name">__EVENTTARGET</stringProp>
-                        <stringProp name="Argument.value">${EVENTTARGET_EVENTARGUMENT_g1}</stringProp>
-                        <stringProp name="Argument.metadata">=</stringProp>
-                        <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                      </elementProp>
-                      <elementProp name="__EVENTARGUMENT" elementType="HTTPArgument">
-                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                        <stringProp name="Argument.name">__EVENTARGUMENT</stringProp>
-                        <stringProp name="Argument.value">${EVENTTARGET_EVENTARGUMENT_g2}</stringProp>
-                        <stringProp name="Argument.metadata">=</stringProp>
-                        <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                      </elementProp>
-                      <elementProp name="__VIEWSTATE" elementType="HTTPArgument">
-                        <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                        <stringProp name="Argument.name">__VIEWSTATE</stringProp>
-                        <stringProp name="Argument.value">${VIEWSTATE}</stringProp>
-                        <stringProp name="Argument.metadata">=</stringProp>
-                        <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                      </elementProp>
-                      <elementProp name="__VIEWSTATEGENERATOR" elementType="HTTPArgument">
-                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                        <stringProp name="Argument.name">__VIEWSTATEGENERATOR</stringProp>
-                        <stringProp name="Argument.value">${VIEWSTATEGENERATOR}</stringProp>
-                        <stringProp name="Argument.metadata">=</stringProp>
-                        <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                      </elementProp>
-                      <elementProp name="__EVENTVALIDATION" elementType="HTTPArgument">
-                        <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                        <stringProp name="Argument.name">__EVENTVALIDATION</stringProp>
-                        <stringProp name="Argument.value">${EVENTVALIDATION}</stringProp>
-                        <stringProp name="Argument.metadata">=</stringProp>
-                        <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                      </elementProp>
-                    </collectionProp>
+                    <collectionProp name="Arguments.arguments"/>
                   </elementProp>
                   <stringProp name="HTTPSampler.domain"></stringProp>
                   <stringProp name="HTTPSampler.port"></stringProp>
                   <stringProp name="HTTPSampler.protocol"></stringProp>
-                  <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-                  <stringProp name="HTTPSampler.path">/blog/calendar/default.aspx</stringProp>
-                  <stringProp name="HTTPSampler.method">POST</stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/blog/${__RandomDate(yyyy/MM/dd,2019/09/01,2019/10/01,,)}/default</stringProp>
+                  <stringProp name="HTTPSampler.method">GET</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
                   <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -562,25 +240,13 @@
                 <hashTree>
                   <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                     <collectionProp name="HeaderManager.headers">
-                      <elementProp name="Referer" elementType="Header">
-                        <stringProp name="Header.name">Referer</stringProp>
-                        <stringProp name="Header.value">http://epuakyiw1864t1.kyiv.epam.com/blog/calendar/default.aspx</stringProp>
-                      </elementProp>
                       <elementProp name="Accept-Language" elementType="Header">
                         <stringProp name="Header.name">Accept-Language</stringProp>
                         <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
                       </elementProp>
-                      <elementProp name="Origin" elementType="Header">
-                        <stringProp name="Header.name">Origin</stringProp>
-                        <stringProp name="Header.value">http://epuakyiw1864t1.kyiv.epam.com</stringProp>
-                      </elementProp>
                       <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
                         <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
                         <stringProp name="Header.value">1</stringProp>
-                      </elementProp>
-                      <elementProp name="Content-Type" elementType="Header">
-                        <stringProp name="Header.name">Content-Type</stringProp>
-                        <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
                       </elementProp>
                       <elementProp name="Accept-Encoding" elementType="Header">
                         <stringProp name="Header.name">Accept-Encoding</stringProp>
@@ -597,41 +263,215 @@
                     </collectionProp>
                   </HeaderManager>
                   <hashTree/>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get EVENTTARGET_EVENTARGUMENT" enabled="true">
+                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get PAGE" enabled="true">
                     <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                    <stringProp name="RegexExtractor.refname">EVENTTARGET_EVENTARGUMENT</stringProp>
-                    <stringProp name="RegexExtractor.regex">href=&quot;javascript:__doPostBack\(&apos;(.*?)&apos;,&apos;(.*?)&apos;\)&quot;\s*style=&quot;color:Black&quot;\s*title=&quot;Go to the previous month&quot;</stringProp>
-                    <stringProp name="RegexExtractor.template">$0$</stringProp>
-                    <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-                    <stringProp name="RegexExtractor.match_number">1</stringProp>
-                  </RegexExtractor>
-                  <hashTree/>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get VIEWSTATEGENERATOR" enabled="true">
-                    <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                    <stringProp name="RegexExtractor.refname">VIEWSTATEGENERATOR</stringProp>
-                    <stringProp name="RegexExtractor.regex">&quot;__VIEWSTATEGENERATOR&quot;\s*value=&quot;(.*?)&quot;</stringProp>
+                    <stringProp name="RegexExtractor.refname">PAGE</stringProp>
+                    <stringProp name="RegexExtractor.regex">${PAGE_RE}</stringProp>
                     <stringProp name="RegexExtractor.template">$1$</stringProp>
                     <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-                    <stringProp name="RegexExtractor.match_number">1</stringProp>
+                    <stringProp name="RegexExtractor.match_number">0</stringProp>
                   </RegexExtractor>
                   <hashTree/>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get VIEWSTATE" enabled="true">
+                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get POST" enabled="true">
                     <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                    <stringProp name="RegexExtractor.refname">VIEWSTATE</stringProp>
-                    <stringProp name="RegexExtractor.regex">&quot;__VIEWSTATE&quot;\s*value=&quot;(.*?)&quot;</stringProp>
+                    <stringProp name="RegexExtractor.refname">POST</stringProp>
+                    <stringProp name="RegexExtractor.regex">href=&quot;(.*?\/post(?!.*?[\#\?].*?).*?)&quot;</stringProp>
                     <stringProp name="RegexExtractor.template">$1$</stringProp>
                     <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-                    <stringProp name="RegexExtractor.match_number">1</stringProp>
+                    <stringProp name="RegexExtractor.match_number">${__Random(0,1,)}</stringProp>
                   </RegexExtractor>
                   <hashTree/>
-                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get EVENTVALIDATION" enabled="true">
+                </hashTree>
+              </hashTree>
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+                <intProp name="ActionProcessor.action">1</intProp>
+                <intProp name="ActionProcessor.target">0</intProp>
+                <stringProp name="ActionProcessor.duration">0</stringProp>
+              </TestAction>
+              <hashTree>
+                <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                  <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
+                </ConstantTimer>
+                <hashTree/>
+              </hashTree>
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Random Page MC" enabled="true">
+                <collectionProp name="ModuleController.node_path">
+                  <stringProp name="764597751">Test Plan</stringProp>
+                  <stringProp name="535912203">BlogEng_task3</stringProp>
+                  <stringProp name="170071582">Test Fragment</stringProp>
+                  <stringProp name="1305995030">Open random page</stringProp>
+                </collectionProp>
+              </ModuleController>
+              <hashTree/>
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open post script MC" enabled="true">
+                <collectionProp name="ModuleController.node_path">
+                  <stringProp name="764597751">Test Plan</stringProp>
+                  <stringProp name="535912203">BlogEng_task3</stringProp>
+                  <stringProp name="170071582">Test Fragment</stringProp>
+                  <stringProp name="-1638030443">Open post script</stringProp>
+                </collectionProp>
+              </ModuleController>
+              <hashTree/>
+            </hashTree>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Open Pre Date" enabled="true"/>
+            <hashTree>
+              <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open date" enabled="true">
+                <boolProp name="TransactionController.includeTimers">false</boolProp>
+                <boolProp name="TransactionController.parent">true</boolProp>
+              </TransactionController>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="123 /blog/2019/10/24/default" enabled="true">
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                    <collectionProp name="Arguments.arguments"/>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol"></stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/blog/${__strReplace(${DATE},-,/,)}/default</stringProp>
+                  <stringProp name="HTTPSampler.method">GET</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                    <collectionProp name="HeaderManager.headers">
+                      <elementProp name="Accept-Language" elementType="Header">
+                        <stringProp name="Header.name">Accept-Language</stringProp>
+                        <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
+                      </elementProp>
+                      <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                        <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                        <stringProp name="Header.value">1</stringProp>
+                      </elementProp>
+                      <elementProp name="Accept-Encoding" elementType="Header">
+                        <stringProp name="Header.name">Accept-Encoding</stringProp>
+                        <stringProp name="Header.value">gzip, deflate</stringProp>
+                      </elementProp>
+                      <elementProp name="User-Agent" elementType="Header">
+                        <stringProp name="Header.name">User-Agent</stringProp>
+                        <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0</stringProp>
+                      </elementProp>
+                      <elementProp name="Accept" elementType="Header">
+                        <stringProp name="Header.name">Accept</stringProp>
+                        <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </HeaderManager>
+                  <hashTree/>
+                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get PAGE" enabled="true">
                     <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                    <stringProp name="RegexExtractor.refname">EVENTVALIDATION</stringProp>
-                    <stringProp name="RegexExtractor.regex">&quot;__EVENTVALIDATION&quot;\s*value=&quot;(.*?)&quot;</stringProp>
+                    <stringProp name="RegexExtractor.refname">PAGE</stringProp>
+                    <stringProp name="RegexExtractor.regex">${PAGE_RE}</stringProp>
                     <stringProp name="RegexExtractor.template">$1$</stringProp>
                     <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-                    <stringProp name="RegexExtractor.match_number">1</stringProp>
+                    <stringProp name="RegexExtractor.match_number">0</stringProp>
                   </RegexExtractor>
+                  <hashTree/>
+                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get POST" enabled="true">
+                    <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                    <stringProp name="RegexExtractor.refname">POST</stringProp>
+                    <stringProp name="RegexExtractor.regex">href=&quot;(.*?\/post(?!.*?[\#\?].*?).*?)&quot;</stringProp>
+                    <stringProp name="RegexExtractor.template">$1$</stringProp>
+                    <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                    <stringProp name="RegexExtractor.match_number">${__Random(0,1,)}</stringProp>
+                  </RegexExtractor>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+                <intProp name="ActionProcessor.action">1</intProp>
+                <intProp name="ActionProcessor.target">0</intProp>
+                <stringProp name="ActionProcessor.duration">0</stringProp>
+              </TestAction>
+              <hashTree>
+                <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                  <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
+                </ConstantTimer>
+                <hashTree/>
+              </hashTree>
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open random page MC" enabled="true">
+                <collectionProp name="ModuleController.node_path">
+                  <stringProp name="764597751">Test Plan</stringProp>
+                  <stringProp name="535912203">BlogEng_task3</stringProp>
+                  <stringProp name="170071582">Test Fragment</stringProp>
+                  <stringProp name="1305995030">Open random page</stringProp>
+                </collectionProp>
+              </ModuleController>
+              <hashTree/>
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open post script MC" enabled="true">
+                <collectionProp name="ModuleController.node_path">
+                  <stringProp name="764597751">Test Plan</stringProp>
+                  <stringProp name="535912203">BlogEng_task3</stringProp>
+                  <stringProp name="170071582">Test Fragment</stringProp>
+                  <stringProp name="-1638030443">Open post script</stringProp>
+                </collectionProp>
+              </ModuleController>
+              <hashTree/>
+            </hashTree>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Search by name" enabled="true"/>
+            <hashTree>
+              <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Search by name" enabled="true">
+                <boolProp name="TransactionController.includeTimers">false</boolProp>
+                <boolProp name="TransactionController.parent">true</boolProp>
+              </TransactionController>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="150 /blog/search" enabled="true">
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="q" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.name">q</stringProp>
+                        <stringProp name="Argument.value">Own%20title%20of%20the%20post-${__Random(1,10,)}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                        <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol"></stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/blog/search</stringProp>
+                  <stringProp name="HTTPSampler.method">GET</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                    <collectionProp name="HeaderManager.headers">
+                      <elementProp name="Accept-Language" elementType="Header">
+                        <stringProp name="Header.name">Accept-Language</stringProp>
+                        <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
+                      </elementProp>
+                      <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                        <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                        <stringProp name="Header.value">1</stringProp>
+                      </elementProp>
+                      <elementProp name="Accept-Encoding" elementType="Header">
+                        <stringProp name="Header.name">Accept-Encoding</stringProp>
+                        <stringProp name="Header.value">gzip, deflate</stringProp>
+                      </elementProp>
+                      <elementProp name="User-Agent" elementType="Header">
+                        <stringProp name="Header.name">User-Agent</stringProp>
+                        <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0</stringProp>
+                      </elementProp>
+                      <elementProp name="Accept" elementType="Header">
+                        <stringProp name="Header.name">Accept</stringProp>
+                        <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </HeaderManager>
                   <hashTree/>
                   <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get POST" enabled="true">
                     <stringProp name="RegexExtractor.useHeaders">false</stringProp>
@@ -642,6 +482,198 @@
                     <stringProp name="RegexExtractor.match_number">${__Random(0,1,)}</stringProp>
                   </RegexExtractor>
                   <hashTree/>
+                </hashTree>
+              </hashTree>
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+                <intProp name="ActionProcessor.action">1</intProp>
+                <intProp name="ActionProcessor.target">0</intProp>
+                <stringProp name="ActionProcessor.duration">0</stringProp>
+              </TestAction>
+              <hashTree>
+                <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                  <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
+                </ConstantTimer>
+                <hashTree/>
+              </hashTree>
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open post MC" enabled="true">
+                <collectionProp name="ModuleController.node_path">
+                  <stringProp name="764597751">Test Plan</stringProp>
+                  <stringProp name="535912203">BlogEng_task3</stringProp>
+                  <stringProp name="170071582">Test Fragment</stringProp>
+                  <stringProp name="-1638030443">Open post script</stringProp>
+                </collectionProp>
+              </ModuleController>
+              <hashTree/>
+            </hashTree>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Open Large Calendar" enabled="true"/>
+            <hashTree>
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Large calendar MC" enabled="true">
+                <collectionProp name="ModuleController.node_path">
+                  <stringProp name="764597751">Test Plan</stringProp>
+                  <stringProp name="535912203">BlogEng_task3</stringProp>
+                  <stringProp name="170071582">Test Fragment</stringProp>
+                  <stringProp name="336177945">Open Large calendar</stringProp>
+                </collectionProp>
+              </ModuleController>
+              <hashTree/>
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+                <intProp name="ActionProcessor.action">1</intProp>
+                <intProp name="ActionProcessor.target">0</intProp>
+                <stringProp name="ActionProcessor.duration">0</stringProp>
+              </TestAction>
+              <hashTree>
+                <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                  <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
+                </ConstantTimer>
+                <hashTree/>
+              </hashTree>
+              <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="While_post_not_found" enabled="true">
+                <stringProp name="WhileController.condition">${__groovy(vars.get(&quot;POST&quot;)==&quot;NOT_FOUND&quot; &amp;&amp; vars.get(&quot;__jm__While_post_not_found__idx&quot;).toInteger()&lt;6,)}</stringProp>
+              </WhileController>
+              <hashTree>
+                <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Go month ago" enabled="true">
+                  <boolProp name="TransactionController.includeTimers">false</boolProp>
+                  <boolProp name="TransactionController.parent">true</boolProp>
+                </TransactionController>
+                <hashTree>
+                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/blog/calendar/default.aspx" enabled="true">
+                    <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                      <collectionProp name="Arguments.arguments">
+                        <elementProp name="__EVENTTARGET" elementType="HTTPArgument">
+                          <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                          <stringProp name="Argument.name">__EVENTTARGET</stringProp>
+                          <stringProp name="Argument.value">${EVENTTARGET_EVENTARGUMENT_g1}</stringProp>
+                          <stringProp name="Argument.metadata">=</stringProp>
+                          <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                        </elementProp>
+                        <elementProp name="__EVENTARGUMENT" elementType="HTTPArgument">
+                          <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                          <stringProp name="Argument.name">__EVENTARGUMENT</stringProp>
+                          <stringProp name="Argument.value">${EVENTTARGET_EVENTARGUMENT_g2}</stringProp>
+                          <stringProp name="Argument.metadata">=</stringProp>
+                          <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                        </elementProp>
+                        <elementProp name="__VIEWSTATE" elementType="HTTPArgument">
+                          <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                          <stringProp name="Argument.name">__VIEWSTATE</stringProp>
+                          <stringProp name="Argument.value">${VIEWSTATE}</stringProp>
+                          <stringProp name="Argument.metadata">=</stringProp>
+                          <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                        </elementProp>
+                        <elementProp name="__VIEWSTATEGENERATOR" elementType="HTTPArgument">
+                          <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                          <stringProp name="Argument.name">__VIEWSTATEGENERATOR</stringProp>
+                          <stringProp name="Argument.value">${VIEWSTATEGENERATOR}</stringProp>
+                          <stringProp name="Argument.metadata">=</stringProp>
+                          <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                        </elementProp>
+                        <elementProp name="__EVENTVALIDATION" elementType="HTTPArgument">
+                          <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                          <stringProp name="Argument.name">__EVENTVALIDATION</stringProp>
+                          <stringProp name="Argument.value">${EVENTVALIDATION}</stringProp>
+                          <stringProp name="Argument.metadata">=</stringProp>
+                          <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                        </elementProp>
+                      </collectionProp>
+                    </elementProp>
+                    <stringProp name="HTTPSampler.domain"></stringProp>
+                    <stringProp name="HTTPSampler.port"></stringProp>
+                    <stringProp name="HTTPSampler.protocol"></stringProp>
+                    <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+                    <stringProp name="HTTPSampler.path">/blog/calendar/default.aspx</stringProp>
+                    <stringProp name="HTTPSampler.method">POST</stringProp>
+                    <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                    <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                    <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                    <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                  </HTTPSamplerProxy>
+                  <hashTree>
+                    <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                      <collectionProp name="HeaderManager.headers">
+                        <elementProp name="Referer" elementType="Header">
+                          <stringProp name="Header.name">Referer</stringProp>
+                          <stringProp name="Header.value">http://epuakyiw1864t1.kyiv.epam.com/blog/calendar/default.aspx</stringProp>
+                        </elementProp>
+                        <elementProp name="Accept-Language" elementType="Header">
+                          <stringProp name="Header.name">Accept-Language</stringProp>
+                          <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
+                        </elementProp>
+                        <elementProp name="Origin" elementType="Header">
+                          <stringProp name="Header.name">Origin</stringProp>
+                          <stringProp name="Header.value">http://epuakyiw1864t1.kyiv.epam.com</stringProp>
+                        </elementProp>
+                        <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                          <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                          <stringProp name="Header.value">1</stringProp>
+                        </elementProp>
+                        <elementProp name="Content-Type" elementType="Header">
+                          <stringProp name="Header.name">Content-Type</stringProp>
+                          <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                        </elementProp>
+                        <elementProp name="Accept-Encoding" elementType="Header">
+                          <stringProp name="Header.name">Accept-Encoding</stringProp>
+                          <stringProp name="Header.value">gzip, deflate</stringProp>
+                        </elementProp>
+                        <elementProp name="User-Agent" elementType="Header">
+                          <stringProp name="Header.name">User-Agent</stringProp>
+                          <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0</stringProp>
+                        </elementProp>
+                        <elementProp name="Accept" elementType="Header">
+                          <stringProp name="Header.name">Accept</stringProp>
+                          <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</stringProp>
+                        </elementProp>
+                      </collectionProp>
+                    </HeaderManager>
+                    <hashTree/>
+                    <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get EVENTTARGET_EVENTARGUMENT" enabled="true">
+                      <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                      <stringProp name="RegexExtractor.refname">EVENTTARGET_EVENTARGUMENT</stringProp>
+                      <stringProp name="RegexExtractor.regex">href=&quot;javascript:__doPostBack\(&apos;(.*?)&apos;,&apos;(.*?)&apos;\)&quot;\s*style=&quot;color:Black&quot;\s*title=&quot;Go to the previous month&quot;</stringProp>
+                      <stringProp name="RegexExtractor.template">$0$</stringProp>
+                      <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                      <stringProp name="RegexExtractor.match_number">1</stringProp>
+                    </RegexExtractor>
+                    <hashTree/>
+                    <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get VIEWSTATEGENERATOR" enabled="true">
+                      <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                      <stringProp name="RegexExtractor.refname">VIEWSTATEGENERATOR</stringProp>
+                      <stringProp name="RegexExtractor.regex">&quot;__VIEWSTATEGENERATOR&quot;\s*value=&quot;(.*?)&quot;</stringProp>
+                      <stringProp name="RegexExtractor.template">$1$</stringProp>
+                      <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                      <stringProp name="RegexExtractor.match_number">1</stringProp>
+                    </RegexExtractor>
+                    <hashTree/>
+                    <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get VIEWSTATE" enabled="true">
+                      <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                      <stringProp name="RegexExtractor.refname">VIEWSTATE</stringProp>
+                      <stringProp name="RegexExtractor.regex">&quot;__VIEWSTATE&quot;\s*value=&quot;(.*?)&quot;</stringProp>
+                      <stringProp name="RegexExtractor.template">$1$</stringProp>
+                      <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                      <stringProp name="RegexExtractor.match_number">1</stringProp>
+                    </RegexExtractor>
+                    <hashTree/>
+                    <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get EVENTVALIDATION" enabled="true">
+                      <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                      <stringProp name="RegexExtractor.refname">EVENTVALIDATION</stringProp>
+                      <stringProp name="RegexExtractor.regex">&quot;__EVENTVALIDATION&quot;\s*value=&quot;(.*?)&quot;</stringProp>
+                      <stringProp name="RegexExtractor.template">$1$</stringProp>
+                      <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                      <stringProp name="RegexExtractor.match_number">1</stringProp>
+                    </RegexExtractor>
+                    <hashTree/>
+                    <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get POST" enabled="true">
+                      <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                      <stringProp name="RegexExtractor.refname">POST</stringProp>
+                      <stringProp name="RegexExtractor.regex">href=&quot;.*?(\/blog\/post.*?)&quot;</stringProp>
+                      <stringProp name="RegexExtractor.template">$1$</stringProp>
+                      <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                      <stringProp name="RegexExtractor.match_number">${__Random(0,1,)}</stringProp>
+                    </RegexExtractor>
+                    <hashTree/>
+                  </hashTree>
                 </hashTree>
                 <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
                   <intProp name="ActionProcessor.action">1</intProp>
@@ -666,12 +698,11 @@
                 </ConstantTimer>
                 <hashTree/>
               </hashTree>
-              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Module Controller" enabled="true">
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open post script MC" enabled="true">
                 <collectionProp name="ModuleController.node_path">
                   <stringProp name="764597751">Test Plan</stringProp>
                   <stringProp name="535912203">BlogEng_task3</stringProp>
                   <stringProp name="170071582">Test Fragment</stringProp>
-                  <stringProp name="-310225558">Open random page+Open post script</stringProp>
                   <stringProp name="-1638030443">Open post script</stringProp>
                 </collectionProp>
               </ModuleController>
@@ -745,7 +776,7 @@
             <hashTree/>
           </hashTree>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Open random page+Open post script" enabled="true">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Open random page" enabled="true">
           <stringProp name="IfController.condition">${__groovy(vars.get(&quot;PAGE&quot;)!=&quot;NOT_FOUND&quot;,)}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
           <boolProp name="IfController.useExpression">true</boolProp>
@@ -757,59 +788,65 @@
             <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="38 /blog/random_page" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
-                <collectionProp name="Arguments.arguments"/>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.protocol"></stringProp>
-              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-              <stringProp name="HTTPSampler.path">${PAGE}</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-            </HTTPSamplerProxy>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open random page" enabled="true">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+              <boolProp name="TransactionController.parent">true</boolProp>
+            </TransactionController>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                <collectionProp name="HeaderManager.headers">
-                  <elementProp name="Accept-Language" elementType="Header">
-                    <stringProp name="Header.name">Accept-Language</stringProp>
-                    <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
-                  </elementProp>
-                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
-                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
-                    <stringProp name="Header.value">1</stringProp>
-                  </elementProp>
-                  <elementProp name="Accept-Encoding" elementType="Header">
-                    <stringProp name="Header.name">Accept-Encoding</stringProp>
-                    <stringProp name="Header.value">gzip, deflate</stringProp>
-                  </elementProp>
-                  <elementProp name="User-Agent" elementType="Header">
-                    <stringProp name="Header.name">User-Agent</stringProp>
-                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0</stringProp>
-                  </elementProp>
-                  <elementProp name="Accept" elementType="Header">
-                    <stringProp name="Header.name">Accept</stringProp>
-                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </HeaderManager>
-              <hashTree/>
-              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get POST" enabled="true">
-                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                <stringProp name="RegexExtractor.refname">POST</stringProp>
-                <stringProp name="RegexExtractor.regex">href=&quot;(.*?\/post(?!.*?[\#\?].*?).*?)&quot;</stringProp>
-                <stringProp name="RegexExtractor.template">$1$</stringProp>
-                <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-                <stringProp name="RegexExtractor.match_number">${__Random(0,1,)}</stringProp>
-              </RegexExtractor>
-              <hashTree/>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="38 /blog/random_page" enabled="true">
+                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                  <collectionProp name="Arguments.arguments"/>
+                </elementProp>
+                <stringProp name="HTTPSampler.domain"></stringProp>
+                <stringProp name="HTTPSampler.port"></stringProp>
+                <stringProp name="HTTPSampler.protocol"></stringProp>
+                <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+                <stringProp name="HTTPSampler.path">${PAGE}</stringProp>
+                <stringProp name="HTTPSampler.method">GET</stringProp>
+                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              </HTTPSamplerProxy>
+              <hashTree>
+                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                  <collectionProp name="HeaderManager.headers">
+                    <elementProp name="Accept-Language" elementType="Header">
+                      <stringProp name="Header.name">Accept-Language</stringProp>
+                      <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
+                    </elementProp>
+                    <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                      <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                      <stringProp name="Header.value">1</stringProp>
+                    </elementProp>
+                    <elementProp name="Accept-Encoding" elementType="Header">
+                      <stringProp name="Header.name">Accept-Encoding</stringProp>
+                      <stringProp name="Header.value">gzip, deflate</stringProp>
+                    </elementProp>
+                    <elementProp name="User-Agent" elementType="Header">
+                      <stringProp name="Header.name">User-Agent</stringProp>
+                      <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0</stringProp>
+                    </elementProp>
+                    <elementProp name="Accept" elementType="Header">
+                      <stringProp name="Header.name">Accept</stringProp>
+                      <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </HeaderManager>
+                <hashTree/>
+                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get POST" enabled="true">
+                  <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                  <stringProp name="RegexExtractor.refname">POST</stringProp>
+                  <stringProp name="RegexExtractor.regex">href=&quot;(.*?\/post(?!.*?[\#\?].*?).*?)&quot;</stringProp>
+                  <stringProp name="RegexExtractor.template">$1$</stringProp>
+                  <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                  <stringProp name="RegexExtractor.match_number">${__Random(0,1,)}</stringProp>
+                </RegexExtractor>
+                <hashTree/>
+              </hashTree>
             </hashTree>
             <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
               <intProp name="ActionProcessor.action">1</intProp>
@@ -823,17 +860,19 @@
               <hashTree/>
             </hashTree>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Open post script" enabled="true">
-            <stringProp name="IfController.condition">${__groovy(${__Random(0,1,)}==1,)}</stringProp>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Open post script" enabled="true"/>
+        <hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Post present open" enabled="true">
+            <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(0,1,)}==1,)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
           <hashTree>
-            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Post present open" enabled="true">
-              <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;,)}</stringProp>
-              <boolProp name="IfController.evaluateAll">false</boolProp>
-              <boolProp name="IfController.useExpression">true</boolProp>
-            </IfController>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open post" enabled="true">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+              <boolProp name="TransactionController.parent">true</boolProp>
+            </TransactionController>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="86 /blog/post/openpost" enabled="true">
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
@@ -925,23 +964,29 @@
                 </RegexExtractor>
                 <hashTree/>
               </hashTree>
-              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment TC" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(${__Random(0,1,)}==1,)}</stringProp>
-                <boolProp name="IfController.evaluateAll">false</boolProp>
-                <boolProp name="IfController.useExpression">true</boolProp>
-              </IfController>
+            </hashTree>
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment TC" enabled="true">
+              <stringProp name="IfController.condition">${__groovy(${__Random(0,1,)}==1,)}</stringProp>
+              <boolProp name="IfController.evaluateAll">false</boolProp>
+              <boolProp name="IfController.useExpression">true</boolProp>
+            </IfController>
+            <hashTree>
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+                <intProp name="ActionProcessor.action">1</intProp>
+                <intProp name="ActionProcessor.target">0</intProp>
+                <stringProp name="ActionProcessor.duration">0</stringProp>
+              </TestAction>
               <hashTree>
-                <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-                  <intProp name="ActionProcessor.action">1</intProp>
-                  <intProp name="ActionProcessor.target">0</intProp>
-                  <stringProp name="ActionProcessor.duration">0</stringProp>
-                </TestAction>
-                <hashTree>
-                  <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                    <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
-                  </ConstantTimer>
-                  <hashTree/>
-                </hashTree>
+                <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                  <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
+                </ConstantTimer>
+                <hashTree/>
+              </hashTree>
+              <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Leave comment" enabled="true">
+                <boolProp name="TransactionController.includeTimers">false</boolProp>
+                <boolProp name="TransactionController.parent">true</boolProp>
+              </TransactionController>
+              <hashTree>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="41 /blog/post/comment" enabled="true">
                   <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
                     <collectionProp name="Arguments.arguments">
@@ -1080,7 +1125,10 @@
             </hashTree>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Home Page" enabled="true"/>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open home page" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">true</boolProp>
+        </TransactionController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="348 /blog/" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
@@ -1146,7 +1194,10 @@
             <hashTree/>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Large calendar" enabled="true"/>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open Large calendar" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">true</boolProp>
+        </TransactionController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/blog/calendar/default.aspx" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
