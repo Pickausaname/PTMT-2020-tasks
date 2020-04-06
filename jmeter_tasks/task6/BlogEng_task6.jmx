@@ -138,9 +138,41 @@
           <stringProp name="LoopController.loops">50</stringProp>
         </LoopController>
         <hashTree>
-          <RandomController guiclass="RandomControlGui" testclass="RandomController" testname="Anonymous script" enabled="true">
-            <intProp name="InterleaveControl.style">1</intProp>
-          </RandomController>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">a=${__Random(1,100,)}
+if (a&lt;=15)
+	{
+		vars.put(&quot;SWITCH&quot;,&quot;0&quot;)
+	}
+else if (a&gt;15&amp;&amp;a&lt;=25)
+	{
+		vars.put(&quot;SWITCH&quot;,&quot;1&quot;)
+	}
+else if (a&gt;25&amp;&amp;a&lt;=55)
+	{
+		vars.put(&quot;SWITCH&quot;,&quot;2&quot;)
+	}
+else if (a&gt;55&amp;&amp;a&lt;=85)
+	{
+		vars.put(&quot;SWITCH&quot;,&quot;3&quot;)
+	}
+else if (a&gt;85&amp;&amp;a&lt;=95)
+	{
+		vars.put(&quot;SWITCH&quot;,&quot;4&quot;)
+	}
+else
+	{
+		vars.put(&quot;SWITCH&quot;,&quot;5&quot;)
+	}</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+          <SwitchController guiclass="SwitchControllerGui" testclass="SwitchController" testname="Anonymous script" enabled="true">
+            <stringProp name="SwitchController.value">${SWITCH}</stringProp>
+          </SwitchController>
           <hashTree>
             <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Open Home page" enabled="true"/>
             <hashTree>
@@ -165,27 +197,20 @@
                 <hashTree/>
               </hashTree>
               <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Open random page if exists" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;PAGE&quot;)!=&quot;NOT_FOUND&quot;,)}</stringProp>
+                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;PAGE&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(0,1,)}==1,)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Random Page yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(${__Random(0,1,)}==1,)}</stringProp>
-                  <boolProp name="IfController.evaluateAll">false</boolProp>
-                  <boolProp name="IfController.useExpression">true</boolProp>
-                </IfController>
-                <hashTree>
-                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open random page MC" enabled="true">
-                    <collectionProp name="ModuleController.node_path">
-                      <stringProp name="764597751">Test Plan</stringProp>
-                      <stringProp name="535912203">BlogEng_task3</stringProp>
-                      <stringProp name="170071582">Test Fragment</stringProp>
-                      <stringProp name="1305995030">Open random page</stringProp>
-                    </collectionProp>
-                  </ModuleController>
-                  <hashTree/>
-                </hashTree>
+                <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open random page MC" enabled="true">
+                  <collectionProp name="ModuleController.node_path">
+                    <stringProp name="764597751">Test Plan</stringProp>
+                    <stringProp name="535912203">BlogEng_task3</stringProp>
+                    <stringProp name="170071582">Test Fragment</stringProp>
+                    <stringProp name="1305995030">Open random page</stringProp>
+                  </collectionProp>
+                </ModuleController>
+                <hashTree/>
               </hashTree>
               <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
@@ -199,7 +224,7 @@
                 <hashTree/>
               </hashTree>
               <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Post present Open Post and Comment" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(0,1,)}==1,)}</stringProp>
+                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(1,100,)}&gt;20,)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
@@ -225,7 +250,7 @@
                   <hashTree/>
                 </hashTree>
                 <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(${__Random(0,1,)}==1,)}</stringProp>
+                  <stringProp name="IfController.condition">${__groovy(&amp;&amp;${__Random(1,100,)}&gt;80,)}</stringProp>
                   <boolProp name="IfController.evaluateAll">false</boolProp>
                   <boolProp name="IfController.useExpression">true</boolProp>
                 </IfController>
@@ -276,27 +301,20 @@
                 <hashTree/>
               </hashTree>
               <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Open random page if exists" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;PAGE&quot;)!=&quot;NOT_FOUND&quot;,)}</stringProp>
+                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;PAGE&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(0,1,)}==1,)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Random Page yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(${__Random(0,1,)}==1,)}</stringProp>
-                  <boolProp name="IfController.evaluateAll">false</boolProp>
-                  <boolProp name="IfController.useExpression">true</boolProp>
-                </IfController>
-                <hashTree>
-                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open random page MC" enabled="true">
-                    <collectionProp name="ModuleController.node_path">
-                      <stringProp name="764597751">Test Plan</stringProp>
-                      <stringProp name="535912203">BlogEng_task3</stringProp>
-                      <stringProp name="170071582">Test Fragment</stringProp>
-                      <stringProp name="1305995030">Open random page</stringProp>
-                    </collectionProp>
-                  </ModuleController>
-                  <hashTree/>
-                </hashTree>
+                <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open random page MC" enabled="true">
+                  <collectionProp name="ModuleController.node_path">
+                    <stringProp name="764597751">Test Plan</stringProp>
+                    <stringProp name="535912203">BlogEng_task3</stringProp>
+                    <stringProp name="170071582">Test Fragment</stringProp>
+                    <stringProp name="1305995030">Open random page</stringProp>
+                  </collectionProp>
+                </ModuleController>
+                <hashTree/>
               </hashTree>
               <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
@@ -310,7 +328,7 @@
                 <hashTree/>
               </hashTree>
               <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Post present Open Post and Comment" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(0,1,)}==1,)}</stringProp>
+                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(1,100,)}&gt;20,)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
@@ -336,7 +354,7 @@
                   <hashTree/>
                 </hashTree>
                 <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(${__Random(0,1,)}==1,)}</stringProp>
+                  <stringProp name="IfController.condition">${__groovy(&amp;&amp;${__Random(1,100,)}&gt;80,)}</stringProp>
                   <boolProp name="IfController.evaluateAll">false</boolProp>
                   <boolProp name="IfController.useExpression">true</boolProp>
                 </IfController>
@@ -387,27 +405,20 @@
                 <hashTree/>
               </hashTree>
               <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Open random page if exists" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;PAGE&quot;)!=&quot;NOT_FOUND&quot;,)}</stringProp>
+                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;PAGE&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(0,1,)}==1,)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Random Page yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(${__Random(0,1,)}==1,)}</stringProp>
-                  <boolProp name="IfController.evaluateAll">false</boolProp>
-                  <boolProp name="IfController.useExpression">true</boolProp>
-                </IfController>
-                <hashTree>
-                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open random page MC" enabled="true">
-                    <collectionProp name="ModuleController.node_path">
-                      <stringProp name="764597751">Test Plan</stringProp>
-                      <stringProp name="535912203">BlogEng_task3</stringProp>
-                      <stringProp name="170071582">Test Fragment</stringProp>
-                      <stringProp name="1305995030">Open random page</stringProp>
-                    </collectionProp>
-                  </ModuleController>
-                  <hashTree/>
-                </hashTree>
+                <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open random page MC" enabled="true">
+                  <collectionProp name="ModuleController.node_path">
+                    <stringProp name="764597751">Test Plan</stringProp>
+                    <stringProp name="535912203">BlogEng_task3</stringProp>
+                    <stringProp name="170071582">Test Fragment</stringProp>
+                    <stringProp name="1305995030">Open random page</stringProp>
+                  </collectionProp>
+                </ModuleController>
+                <hashTree/>
               </hashTree>
               <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
@@ -421,7 +432,7 @@
                 <hashTree/>
               </hashTree>
               <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Post present Open Post and Comment" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(0,1,)}==1,)}</stringProp>
+                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(1,100,)}&gt;20,)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
@@ -447,7 +458,7 @@
                   <hashTree/>
                 </hashTree>
                 <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(${__Random(0,1,)}==1,)}</stringProp>
+                  <stringProp name="IfController.condition">${__groovy(&amp;&amp;${__Random(1,100,)}&gt;80,)}</stringProp>
                   <boolProp name="IfController.evaluateAll">false</boolProp>
                   <boolProp name="IfController.useExpression">true</boolProp>
                 </IfController>
@@ -498,7 +509,7 @@
                 <hashTree/>
               </hashTree>
               <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Post present Open Post and Comment" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(0,1,)}==1,)}</stringProp>
+                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(1,100,)}&gt;20,)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
@@ -524,7 +535,7 @@
                   <hashTree/>
                 </hashTree>
                 <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(${__Random(0,1,)}==1,)}</stringProp>
+                  <stringProp name="IfController.condition">${__groovy(&amp;&amp;${__Random(1,100,)}&gt;80,)}</stringProp>
                   <boolProp name="IfController.evaluateAll">false</boolProp>
                   <boolProp name="IfController.useExpression">true</boolProp>
                 </IfController>
@@ -746,7 +757,7 @@
                 <hashTree/>
               </hashTree>
               <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Post present Open Post and Comment" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(0,1,)}==1,)}</stringProp>
+                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(1,100,)}&gt;20,)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
@@ -772,7 +783,7 @@
                   <hashTree/>
                 </hashTree>
                 <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(${__Random(0,1,)}==1,)}</stringProp>
+                  <stringProp name="IfController.condition">${__groovy(&amp;&amp;${__Random(1,100,)}&gt;80,)}</stringProp>
                   <boolProp name="IfController.evaluateAll">false</boolProp>
                   <boolProp name="IfController.useExpression">true</boolProp>
                 </IfController>
@@ -922,7 +933,7 @@
               <stringProp name="RegexExtractor.regex">href=&quot;(.*?\/post(?!.*?[\#\?].*?).*?)&quot;</stringProp>
               <stringProp name="RegexExtractor.template">$1$</stringProp>
               <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-              <stringProp name="RegexExtractor.match_number">${__Random(0,1,)}</stringProp>
+              <stringProp name="RegexExtractor.match_number">${__groovy(${__Random(1,100,)}&lt;65?0:1,)}</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
@@ -966,7 +977,7 @@
               <stringProp name="RegexExtractor.regex">href=&quot;(.*?\/post(?!.*?[\#\?].*?).*?)&quot;</stringProp>
               <stringProp name="RegexExtractor.template">$1$</stringProp>
               <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-              <stringProp name="RegexExtractor.match_number">${__Random(0,1,)}</stringProp>
+              <stringProp name="RegexExtractor.match_number">${__groovy(${__Random(1,100,)}&lt;65?0:1,)}</stringProp>
             </RegexExtractor>
             <hashTree/>
             <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
@@ -1095,7 +1106,7 @@
               <stringProp name="RegexExtractor.regex">href=&quot;.*?(\/blog\/post.*?)&quot;</stringProp>
               <stringProp name="RegexExtractor.template">$1$</stringProp>
               <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-              <stringProp name="RegexExtractor.match_number">${__Random(0,1,)}</stringProp>
+              <stringProp name="RegexExtractor.match_number">${__groovy(${__Random(1,100,)}&lt;65?0:1,)}</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
@@ -1164,7 +1175,7 @@
               <stringProp name="RegexExtractor.regex">href=&quot;(.*?\/post(?!.*?[\#\?].*?).*?)&quot;</stringProp>
               <stringProp name="RegexExtractor.template">$1$</stringProp>
               <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-              <stringProp name="RegexExtractor.match_number">${__Random(0,1,)}</stringProp>
+              <stringProp name="RegexExtractor.match_number">${__groovy(${__Random(1,100,)}&lt;65?0:1,)}</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
@@ -1469,7 +1480,7 @@
               <stringProp name="RegexExtractor.regex">href=&quot;(.*?\/post(?!.*?[\#\?].*?).*?)&quot;</stringProp>
               <stringProp name="RegexExtractor.template">$1$</stringProp>
               <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-              <stringProp name="RegexExtractor.match_number">${__Random(0,1,)}</stringProp>
+              <stringProp name="RegexExtractor.match_number">${__groovy(${__Random(1,100,)}&lt;65?0:1,)}</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
@@ -1537,7 +1548,7 @@
               <stringProp name="RegexExtractor.regex">href=&quot;.*?(\/blog\/post.*?)&quot;</stringProp>
               <stringProp name="RegexExtractor.template">$1$</stringProp>
               <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-              <stringProp name="RegexExtractor.match_number">${__Random(0,1,)}</stringProp>
+              <stringProp name="RegexExtractor.match_number">${__groovy(${__Random(1,100,)}&lt;65?0:1,)}</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
