@@ -250,7 +250,7 @@ else
                   <hashTree/>
                 </hashTree>
                 <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(&amp;&amp;${__Random(1,100,)}&gt;80,)}</stringProp>
+                  <stringProp name="IfController.condition">${__groovy(${__Random(1,100,)}&gt;80,)}</stringProp>
                   <boolProp name="IfController.evaluateAll">false</boolProp>
                   <boolProp name="IfController.useExpression">true</boolProp>
                 </IfController>
@@ -354,7 +354,7 @@ else
                   <hashTree/>
                 </hashTree>
                 <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(&amp;&amp;${__Random(1,100,)}&gt;80,)}</stringProp>
+                  <stringProp name="IfController.condition">${__groovy(${__Random(1,100,)}&gt;80,)}</stringProp>
                   <boolProp name="IfController.evaluateAll">false</boolProp>
                   <boolProp name="IfController.useExpression">true</boolProp>
                 </IfController>
@@ -458,7 +458,7 @@ else
                   <hashTree/>
                 </hashTree>
                 <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(&amp;&amp;${__Random(1,100,)}&gt;80,)}</stringProp>
+                  <stringProp name="IfController.condition">${__groovy(${__Random(1,100,)}&gt;80,)}</stringProp>
                   <boolProp name="IfController.evaluateAll">false</boolProp>
                   <boolProp name="IfController.useExpression">true</boolProp>
                 </IfController>
@@ -535,7 +535,7 @@ else
                   <hashTree/>
                 </hashTree>
                 <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(&amp;&amp;${__Random(1,100,)}&gt;80,)}</stringProp>
+                  <stringProp name="IfController.condition">${__groovy(${__Random(1,100,)}&gt;80,)}</stringProp>
                   <boolProp name="IfController.evaluateAll">false</boolProp>
                   <boolProp name="IfController.useExpression">true</boolProp>
                 </IfController>
@@ -783,7 +783,7 @@ else
                   <hashTree/>
                 </hashTree>
                 <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(&amp;&amp;${__Random(1,100,)}&gt;80,)}</stringProp>
+                  <stringProp name="IfController.condition">${__groovy(${__Random(1,100,)}&gt;80,)}</stringProp>
                   <boolProp name="IfController.evaluateAll">false</boolProp>
                   <boolProp name="IfController.useExpression">true</boolProp>
                 </IfController>
