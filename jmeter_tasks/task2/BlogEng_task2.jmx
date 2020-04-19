@@ -26,7 +26,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="NUMBER_OF_POSTS" elementType="Argument">
             <stringProp name="Argument.name">NUMBER_OF_POSTS</stringProp>
-            <stringProp name="Argument.value">${__P(NUMBER_OF_POSTS,900)}</stringProp>
+            <stringProp name="Argument.value">${__P(NUMBER_OF_POSTS,100)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="COUNTER" elementType="Argument">
@@ -81,7 +81,7 @@
           </elementProp>
           <elementProp name="NUM_PREDATED_POSTS" elementType="Argument">
             <stringProp name="Argument.name">NUM_PREDATED_POSTS</stringProp>
-            <stringProp name="Argument.value">${__P(NUM_PREDATED_POSTS,100)}</stringProp>
+            <stringProp name="Argument.value">${__P(NUM_PREDATED_POSTS,80)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>

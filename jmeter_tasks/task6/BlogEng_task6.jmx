@@ -61,12 +61,19 @@
           </elementProp>
           <elementProp name="PAGE_RE" elementType="Argument">
             <stringProp name="Argument.name">PAGE_RE</stringProp>
-            <stringProp name="Argument.value">href=&quot;(.*?\?page=\d+)</stringProp>
+            <stringProp name="Argument.value">href=&quot;.*?\?page=(\d+)</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">regular expression to find page number</stringProp>
           </elementProp>
           <elementProp name="DELAY" elementType="Argument">
             <stringProp name="Argument.name">DELAY</stringProp>
-            <stringProp name="Argument.value">${__P(DELAY,1000)}</stringProp>
+            <stringProp name="Argument.value">${__P(DELAY,3000)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="POST_RE" elementType="Argument">
+            <stringProp name="Argument.name">POST_RE</stringProp>
+            <stringProp name="Argument.value">a href=&quot;\/blog\/post\/(.*?)&quot;</stringProp>
+            <stringProp name="Argument.desc">regular expression to find post name</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -116,13 +123,13 @@
         <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Home page MC" enabled="true">
           <collectionProp name="ModuleController.node_path">
             <stringProp name="764597751">Test Plan</stringProp>
-            <stringProp name="535912203">BlogEng_task3</stringProp>
+            <stringProp name="535912206">BlogEng_task6</stringProp>
             <stringProp name="170071582">Test Fragment</stringProp>
             <stringProp name="336909050">Open home page</stringProp>
           </collectionProp>
         </ModuleController>
         <hashTree/>
-        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
           <intProp name="ActionProcessor.action">1</intProp>
           <intProp name="ActionProcessor.target">0</intProp>
           <stringProp name="ActionProcessor.duration">0</stringProp>
@@ -138,35 +145,37 @@
           <stringProp name="LoopController.loops">50</stringProp>
         </LoopController>
         <hashTree>
-          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
-            <stringProp name="cacheKey">true</stringProp>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Open page probabilities JSR223" enabled="true">
+            <stringProp name="cacheKey">false</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
-            <stringProp name="script">a=${__Random(1,100,)}
+            <stringProp name="script">//Get random int to hit in some range to choose page with some probability
+a=${__Random(1,100,)}
 if (a&lt;=15)
 	{
-		vars.put(&quot;SWITCH&quot;,&quot;0&quot;)
+		vars.put(&quot;SWITCH&quot;,&quot;Open Home page&quot;)
 	}
 else if (a&gt;15&amp;&amp;a&lt;=25)
 	{
-		vars.put(&quot;SWITCH&quot;,&quot;1&quot;)
+		vars.put(&quot;SWITCH&quot;,&quot;Open Random Date&quot;)
 	}
 else if (a&gt;25&amp;&amp;a&lt;=55)
 	{
-		vars.put(&quot;SWITCH&quot;,&quot;2&quot;)
+		vars.put(&quot;SWITCH&quot;,&quot;Open Pre Date&quot;)
 	}
 else if (a&gt;55&amp;&amp;a&lt;=85)
 	{
-		vars.put(&quot;SWITCH&quot;,&quot;3&quot;)
+		vars.put(&quot;SWITCH&quot;,&quot;Search by name&quot;)
 	}
 else if (a&gt;85&amp;&amp;a&lt;=95)
 	{
-		vars.put(&quot;SWITCH&quot;,&quot;4&quot;)
+		vars.put(&quot;SWITCH&quot;,&quot;Open Large Calendar&quot;)
 	}
 else
 	{
-		vars.put(&quot;SWITCH&quot;,&quot;5&quot;)
-	}</stringProp>
+		vars.put(&quot;SWITCH&quot;,&quot;Open Contacts Page&quot;)
+	}
+SampleResult.setIgnore()</stringProp>
             <stringProp name="scriptLanguage">groovy</stringProp>
           </JSR223Sampler>
           <hashTree/>
@@ -179,13 +188,13 @@ else
               <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Home Page MC" enabled="true">
                 <collectionProp name="ModuleController.node_path">
                   <stringProp name="764597751">Test Plan</stringProp>
-                  <stringProp name="535912203">BlogEng_task3</stringProp>
+                  <stringProp name="535912206">BlogEng_task6</stringProp>
                   <stringProp name="170071582">Test Fragment</stringProp>
                   <stringProp name="336909050">Open home page</stringProp>
                 </collectionProp>
               </ModuleController>
               <hashTree/>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
                 <intProp name="ActionProcessor.target">0</intProp>
                 <stringProp name="ActionProcessor.duration">0</stringProp>
@@ -197,22 +206,34 @@ else
                 <hashTree/>
               </hashTree>
               <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Open random page if exists" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;PAGE&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(0,1,)}==1,)}</stringProp>
+                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;PAGE&quot;)!=&quot;NOT_FOUND&quot;,)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open random page MC" enabled="true">
-                  <collectionProp name="ModuleController.node_path">
-                    <stringProp name="764597751">Test Plan</stringProp>
-                    <stringProp name="535912203">BlogEng_task3</stringProp>
-                    <stringProp name="170071582">Test Fragment</stringProp>
-                    <stringProp name="1305995030">Open random page</stringProp>
-                  </collectionProp>
-                </ModuleController>
-                <hashTree/>
+                <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open random page 50% Throughput Controller " enabled="true">
+                  <intProp name="ThroughputController.style">1</intProp>
+                  <boolProp name="ThroughputController.perThread">false</boolProp>
+                  <intProp name="ThroughputController.maxThroughput">1</intProp>
+                  <FloatProperty>
+                    <name>ThroughputController.percentThroughput</name>
+                    <value>50.0</value>
+                    <savedValue>0.0</savedValue>
+                  </FloatProperty>
+                </ThroughputController>
+                <hashTree>
+                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open random page MC" enabled="true">
+                    <collectionProp name="ModuleController.node_path">
+                      <stringProp name="764597751">Test Plan</stringProp>
+                      <stringProp name="535912206">BlogEng_task6</stringProp>
+                      <stringProp name="170071582">Test Fragment</stringProp>
+                      <stringProp name="1305995030">Open random page</stringProp>
+                    </collectionProp>
+                  </ModuleController>
+                  <hashTree/>
+                </hashTree>
               </hashTree>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
                 <intProp name="ActionProcessor.target">0</intProp>
                 <stringProp name="ActionProcessor.duration">0</stringProp>
@@ -224,49 +245,66 @@ else
                 <hashTree/>
               </hashTree>
               <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Post present Open Post and Comment" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(1,100,)}&gt;20,)}</stringProp>
+                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;,)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Post MC" enabled="true">
-                  <collectionProp name="ModuleController.node_path">
-                    <stringProp name="764597751">Test Plan</stringProp>
-                    <stringProp name="535912203">BlogEng_task3</stringProp>
-                    <stringProp name="170071582">Test Fragment</stringProp>
-                    <stringProp name="-802955114">Open post</stringProp>
-                  </collectionProp>
-                </ModuleController>
-                <hashTree/>
-                <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-                  <intProp name="ActionProcessor.action">1</intProp>
-                  <intProp name="ActionProcessor.target">0</intProp>
-                  <stringProp name="ActionProcessor.duration">0</stringProp>
-                </TestAction>
+                <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open post 80% Throghput Controller" enabled="true">
+                  <intProp name="ThroughputController.style">1</intProp>
+                  <boolProp name="ThroughputController.perThread">false</boolProp>
+                  <intProp name="ThroughputController.maxThroughput">1</intProp>
+                  <FloatProperty>
+                    <name>ThroughputController.percentThroughput</name>
+                    <value>80.0</value>
+                    <savedValue>0.0</savedValue>
+                  </FloatProperty>
+                </ThroughputController>
                 <hashTree>
-                  <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                    <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
-                  </ConstantTimer>
-                  <hashTree/>
-                </hashTree>
-                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(${__Random(1,100,)}&gt;80,)}</stringProp>
-                  <boolProp name="IfController.evaluateAll">false</boolProp>
-                  <boolProp name="IfController.useExpression">true</boolProp>
-                </IfController>
-                <hashTree>
-                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Leave comment MC" enabled="true">
+                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Post MC" enabled="true">
                     <collectionProp name="ModuleController.node_path">
                       <stringProp name="764597751">Test Plan</stringProp>
-                      <stringProp name="535912203">BlogEng_task3</stringProp>
+                      <stringProp name="535912206">BlogEng_task6</stringProp>
                       <stringProp name="170071582">Test Fragment</stringProp>
-                      <stringProp name="-1874239018">Leave comment</stringProp>
+                      <stringProp name="-802955114">Open post</stringProp>
                     </collectionProp>
                   </ModuleController>
                   <hashTree/>
+                  <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Comment 20% Throughput Controller" enabled="true">
+                    <intProp name="ThroughputController.style">1</intProp>
+                    <boolProp name="ThroughputController.perThread">false</boolProp>
+                    <intProp name="ThroughputController.maxThroughput">1</intProp>
+                    <FloatProperty>
+                      <name>ThroughputController.percentThroughput</name>
+                      <value>20.0</value>
+                      <savedValue>0.0</savedValue>
+                    </FloatProperty>
+                  </ThroughputController>
+                  <hashTree>
+                    <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
+                      <intProp name="ActionProcessor.action">1</intProp>
+                      <intProp name="ActionProcessor.target">0</intProp>
+                      <stringProp name="ActionProcessor.duration">0</stringProp>
+                    </TestAction>
+                    <hashTree>
+                      <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                        <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
+                      </ConstantTimer>
+                      <hashTree/>
+                    </hashTree>
+                    <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Leave comment MC" enabled="true">
+                      <collectionProp name="ModuleController.node_path">
+                        <stringProp name="764597751">Test Plan</stringProp>
+                        <stringProp name="535912206">BlogEng_task6</stringProp>
+                        <stringProp name="170071582">Test Fragment</stringProp>
+                        <stringProp name="-1874239018">Leave comment</stringProp>
+                      </collectionProp>
+                    </ModuleController>
+                    <hashTree/>
+                  </hashTree>
                 </hashTree>
               </hashTree>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
                 <intProp name="ActionProcessor.target">0</intProp>
                 <stringProp name="ActionProcessor.duration">0</stringProp>
@@ -283,13 +321,13 @@ else
               <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open random date MC" enabled="true">
                 <collectionProp name="ModuleController.node_path">
                   <stringProp name="764597751">Test Plan</stringProp>
-                  <stringProp name="535912203">BlogEng_task3</stringProp>
+                  <stringProp name="535912206">BlogEng_task6</stringProp>
                   <stringProp name="170071582">Test Fragment</stringProp>
                   <stringProp name="1305637941">Open random date</stringProp>
                 </collectionProp>
               </ModuleController>
               <hashTree/>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
                 <intProp name="ActionProcessor.target">0</intProp>
                 <stringProp name="ActionProcessor.duration">0</stringProp>
@@ -301,22 +339,34 @@ else
                 <hashTree/>
               </hashTree>
               <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Open random page if exists" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;PAGE&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(0,1,)}==1,)}</stringProp>
+                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;PAGE&quot;)!=&quot;NOT_FOUND&quot;,)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open random page MC" enabled="true">
-                  <collectionProp name="ModuleController.node_path">
-                    <stringProp name="764597751">Test Plan</stringProp>
-                    <stringProp name="535912203">BlogEng_task3</stringProp>
-                    <stringProp name="170071582">Test Fragment</stringProp>
-                    <stringProp name="1305995030">Open random page</stringProp>
-                  </collectionProp>
-                </ModuleController>
-                <hashTree/>
+                <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open random page 50% Throughput Controller " enabled="true">
+                  <intProp name="ThroughputController.style">1</intProp>
+                  <boolProp name="ThroughputController.perThread">false</boolProp>
+                  <intProp name="ThroughputController.maxThroughput">1</intProp>
+                  <FloatProperty>
+                    <name>ThroughputController.percentThroughput</name>
+                    <value>50.0</value>
+                    <savedValue>0.0</savedValue>
+                  </FloatProperty>
+                </ThroughputController>
+                <hashTree>
+                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open random page MC" enabled="true">
+                    <collectionProp name="ModuleController.node_path">
+                      <stringProp name="764597751">Test Plan</stringProp>
+                      <stringProp name="535912206">BlogEng_task6</stringProp>
+                      <stringProp name="170071582">Test Fragment</stringProp>
+                      <stringProp name="1305995030">Open random page</stringProp>
+                    </collectionProp>
+                  </ModuleController>
+                  <hashTree/>
+                </hashTree>
               </hashTree>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
                 <intProp name="ActionProcessor.target">0</intProp>
                 <stringProp name="ActionProcessor.duration">0</stringProp>
@@ -328,49 +378,66 @@ else
                 <hashTree/>
               </hashTree>
               <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Post present Open Post and Comment" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(1,100,)}&gt;20,)}</stringProp>
+                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;,)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Post MC" enabled="true">
-                  <collectionProp name="ModuleController.node_path">
-                    <stringProp name="764597751">Test Plan</stringProp>
-                    <stringProp name="535912203">BlogEng_task3</stringProp>
-                    <stringProp name="170071582">Test Fragment</stringProp>
-                    <stringProp name="-802955114">Open post</stringProp>
-                  </collectionProp>
-                </ModuleController>
-                <hashTree/>
-                <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-                  <intProp name="ActionProcessor.action">1</intProp>
-                  <intProp name="ActionProcessor.target">0</intProp>
-                  <stringProp name="ActionProcessor.duration">0</stringProp>
-                </TestAction>
+                <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open post 80% Throghput Controller" enabled="true">
+                  <intProp name="ThroughputController.style">1</intProp>
+                  <boolProp name="ThroughputController.perThread">false</boolProp>
+                  <intProp name="ThroughputController.maxThroughput">1</intProp>
+                  <FloatProperty>
+                    <name>ThroughputController.percentThroughput</name>
+                    <value>80.0</value>
+                    <savedValue>0.0</savedValue>
+                  </FloatProperty>
+                </ThroughputController>
                 <hashTree>
-                  <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                    <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
-                  </ConstantTimer>
-                  <hashTree/>
-                </hashTree>
-                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(${__Random(1,100,)}&gt;80,)}</stringProp>
-                  <boolProp name="IfController.evaluateAll">false</boolProp>
-                  <boolProp name="IfController.useExpression">true</boolProp>
-                </IfController>
-                <hashTree>
-                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Leave comment MC" enabled="true">
+                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Post MC" enabled="true">
                     <collectionProp name="ModuleController.node_path">
                       <stringProp name="764597751">Test Plan</stringProp>
-                      <stringProp name="535912203">BlogEng_task3</stringProp>
+                      <stringProp name="535912206">BlogEng_task6</stringProp>
                       <stringProp name="170071582">Test Fragment</stringProp>
-                      <stringProp name="-1874239018">Leave comment</stringProp>
+                      <stringProp name="-802955114">Open post</stringProp>
                     </collectionProp>
                   </ModuleController>
                   <hashTree/>
+                  <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Comment 20% Throughput Controller" enabled="true">
+                    <intProp name="ThroughputController.style">1</intProp>
+                    <boolProp name="ThroughputController.perThread">false</boolProp>
+                    <intProp name="ThroughputController.maxThroughput">1</intProp>
+                    <FloatProperty>
+                      <name>ThroughputController.percentThroughput</name>
+                      <value>20.0</value>
+                      <savedValue>0.0</savedValue>
+                    </FloatProperty>
+                  </ThroughputController>
+                  <hashTree>
+                    <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
+                      <intProp name="ActionProcessor.action">1</intProp>
+                      <intProp name="ActionProcessor.target">0</intProp>
+                      <stringProp name="ActionProcessor.duration">0</stringProp>
+                    </TestAction>
+                    <hashTree>
+                      <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                        <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
+                      </ConstantTimer>
+                      <hashTree/>
+                    </hashTree>
+                    <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Leave comment MC" enabled="true">
+                      <collectionProp name="ModuleController.node_path">
+                        <stringProp name="764597751">Test Plan</stringProp>
+                        <stringProp name="535912206">BlogEng_task6</stringProp>
+                        <stringProp name="170071582">Test Fragment</stringProp>
+                        <stringProp name="-1874239018">Leave comment</stringProp>
+                      </collectionProp>
+                    </ModuleController>
+                    <hashTree/>
+                  </hashTree>
                 </hashTree>
               </hashTree>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
                 <intProp name="ActionProcessor.target">0</intProp>
                 <stringProp name="ActionProcessor.duration">0</stringProp>
@@ -387,13 +454,13 @@ else
               <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Date MC" enabled="true">
                 <collectionProp name="ModuleController.node_path">
                   <stringProp name="764597751">Test Plan</stringProp>
-                  <stringProp name="535912203">BlogEng_task3</stringProp>
+                  <stringProp name="535912206">BlogEng_task6</stringProp>
                   <stringProp name="170071582">Test Fragment</stringProp>
                   <stringProp name="-803326044">Open date</stringProp>
                 </collectionProp>
               </ModuleController>
               <hashTree/>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
                 <intProp name="ActionProcessor.target">0</intProp>
                 <stringProp name="ActionProcessor.duration">0</stringProp>
@@ -405,22 +472,34 @@ else
                 <hashTree/>
               </hashTree>
               <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Open random page if exists" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;PAGE&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(0,1,)}==1,)}</stringProp>
+                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;PAGE&quot;)!=&quot;NOT_FOUND&quot;,)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open random page MC" enabled="true">
-                  <collectionProp name="ModuleController.node_path">
-                    <stringProp name="764597751">Test Plan</stringProp>
-                    <stringProp name="535912203">BlogEng_task3</stringProp>
-                    <stringProp name="170071582">Test Fragment</stringProp>
-                    <stringProp name="1305995030">Open random page</stringProp>
-                  </collectionProp>
-                </ModuleController>
-                <hashTree/>
+                <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open random page 50% Throughput Controller " enabled="true">
+                  <intProp name="ThroughputController.style">1</intProp>
+                  <boolProp name="ThroughputController.perThread">false</boolProp>
+                  <intProp name="ThroughputController.maxThroughput">1</intProp>
+                  <FloatProperty>
+                    <name>ThroughputController.percentThroughput</name>
+                    <value>50.0</value>
+                    <savedValue>0.0</savedValue>
+                  </FloatProperty>
+                </ThroughputController>
+                <hashTree>
+                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open random page MC" enabled="true">
+                    <collectionProp name="ModuleController.node_path">
+                      <stringProp name="764597751">Test Plan</stringProp>
+                      <stringProp name="535912206">BlogEng_task6</stringProp>
+                      <stringProp name="170071582">Test Fragment</stringProp>
+                      <stringProp name="1305995030">Open random page</stringProp>
+                    </collectionProp>
+                  </ModuleController>
+                  <hashTree/>
+                </hashTree>
               </hashTree>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
                 <intProp name="ActionProcessor.target">0</intProp>
                 <stringProp name="ActionProcessor.duration">0</stringProp>
@@ -432,49 +511,66 @@ else
                 <hashTree/>
               </hashTree>
               <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Post present Open Post and Comment" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(1,100,)}&gt;20,)}</stringProp>
+                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;,)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Post MC" enabled="true">
-                  <collectionProp name="ModuleController.node_path">
-                    <stringProp name="764597751">Test Plan</stringProp>
-                    <stringProp name="535912203">BlogEng_task3</stringProp>
-                    <stringProp name="170071582">Test Fragment</stringProp>
-                    <stringProp name="-802955114">Open post</stringProp>
-                  </collectionProp>
-                </ModuleController>
-                <hashTree/>
-                <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-                  <intProp name="ActionProcessor.action">1</intProp>
-                  <intProp name="ActionProcessor.target">0</intProp>
-                  <stringProp name="ActionProcessor.duration">0</stringProp>
-                </TestAction>
+                <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open post 80% Throghput Controller" enabled="true">
+                  <intProp name="ThroughputController.style">1</intProp>
+                  <boolProp name="ThroughputController.perThread">false</boolProp>
+                  <intProp name="ThroughputController.maxThroughput">1</intProp>
+                  <FloatProperty>
+                    <name>ThroughputController.percentThroughput</name>
+                    <value>80.0</value>
+                    <savedValue>0.0</savedValue>
+                  </FloatProperty>
+                </ThroughputController>
                 <hashTree>
-                  <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                    <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
-                  </ConstantTimer>
-                  <hashTree/>
-                </hashTree>
-                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(${__Random(1,100,)}&gt;80,)}</stringProp>
-                  <boolProp name="IfController.evaluateAll">false</boolProp>
-                  <boolProp name="IfController.useExpression">true</boolProp>
-                </IfController>
-                <hashTree>
-                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Leave comment MC" enabled="true">
+                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Post MC" enabled="true">
                     <collectionProp name="ModuleController.node_path">
                       <stringProp name="764597751">Test Plan</stringProp>
-                      <stringProp name="535912203">BlogEng_task3</stringProp>
+                      <stringProp name="535912206">BlogEng_task6</stringProp>
                       <stringProp name="170071582">Test Fragment</stringProp>
-                      <stringProp name="-1874239018">Leave comment</stringProp>
+                      <stringProp name="-802955114">Open post</stringProp>
                     </collectionProp>
                   </ModuleController>
                   <hashTree/>
+                  <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Comment 20% Throughput Controller" enabled="true">
+                    <intProp name="ThroughputController.style">1</intProp>
+                    <boolProp name="ThroughputController.perThread">false</boolProp>
+                    <intProp name="ThroughputController.maxThroughput">1</intProp>
+                    <FloatProperty>
+                      <name>ThroughputController.percentThroughput</name>
+                      <value>20.0</value>
+                      <savedValue>0.0</savedValue>
+                    </FloatProperty>
+                  </ThroughputController>
+                  <hashTree>
+                    <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
+                      <intProp name="ActionProcessor.action">1</intProp>
+                      <intProp name="ActionProcessor.target">0</intProp>
+                      <stringProp name="ActionProcessor.duration">0</stringProp>
+                    </TestAction>
+                    <hashTree>
+                      <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                        <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
+                      </ConstantTimer>
+                      <hashTree/>
+                    </hashTree>
+                    <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Leave comment MC" enabled="true">
+                      <collectionProp name="ModuleController.node_path">
+                        <stringProp name="764597751">Test Plan</stringProp>
+                        <stringProp name="535912206">BlogEng_task6</stringProp>
+                        <stringProp name="170071582">Test Fragment</stringProp>
+                        <stringProp name="-1874239018">Leave comment</stringProp>
+                      </collectionProp>
+                    </ModuleController>
+                    <hashTree/>
+                  </hashTree>
                 </hashTree>
               </hashTree>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
                 <intProp name="ActionProcessor.target">0</intProp>
                 <stringProp name="ActionProcessor.duration">0</stringProp>
@@ -491,13 +587,13 @@ else
               <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Search by name MC" enabled="true">
                 <collectionProp name="ModuleController.node_path">
                   <stringProp name="764597751">Test Plan</stringProp>
-                  <stringProp name="535912203">BlogEng_task3</stringProp>
+                  <stringProp name="535912206">BlogEng_task6</stringProp>
                   <stringProp name="170071582">Test Fragment</stringProp>
                   <stringProp name="1303257692">Search by name</stringProp>
                 </collectionProp>
               </ModuleController>
               <hashTree/>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
                 <intProp name="ActionProcessor.target">0</intProp>
                 <stringProp name="ActionProcessor.duration">0</stringProp>
@@ -509,49 +605,66 @@ else
                 <hashTree/>
               </hashTree>
               <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Post present Open Post and Comment" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(1,100,)}&gt;20,)}</stringProp>
+                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;,)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Post MC" enabled="true">
-                  <collectionProp name="ModuleController.node_path">
-                    <stringProp name="764597751">Test Plan</stringProp>
-                    <stringProp name="535912203">BlogEng_task3</stringProp>
-                    <stringProp name="170071582">Test Fragment</stringProp>
-                    <stringProp name="-802955114">Open post</stringProp>
-                  </collectionProp>
-                </ModuleController>
-                <hashTree/>
-                <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-                  <intProp name="ActionProcessor.action">1</intProp>
-                  <intProp name="ActionProcessor.target">0</intProp>
-                  <stringProp name="ActionProcessor.duration">0</stringProp>
-                </TestAction>
+                <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open post 80% Throghput Controller" enabled="true">
+                  <intProp name="ThroughputController.style">1</intProp>
+                  <boolProp name="ThroughputController.perThread">false</boolProp>
+                  <intProp name="ThroughputController.maxThroughput">1</intProp>
+                  <FloatProperty>
+                    <name>ThroughputController.percentThroughput</name>
+                    <value>80.0</value>
+                    <savedValue>0.0</savedValue>
+                  </FloatProperty>
+                </ThroughputController>
                 <hashTree>
-                  <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                    <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
-                  </ConstantTimer>
-                  <hashTree/>
-                </hashTree>
-                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(${__Random(1,100,)}&gt;80,)}</stringProp>
-                  <boolProp name="IfController.evaluateAll">false</boolProp>
-                  <boolProp name="IfController.useExpression">true</boolProp>
-                </IfController>
-                <hashTree>
-                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Leave comment MC" enabled="true">
+                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Post MC" enabled="true">
                     <collectionProp name="ModuleController.node_path">
                       <stringProp name="764597751">Test Plan</stringProp>
-                      <stringProp name="535912203">BlogEng_task3</stringProp>
+                      <stringProp name="535912206">BlogEng_task6</stringProp>
                       <stringProp name="170071582">Test Fragment</stringProp>
-                      <stringProp name="-1874239018">Leave comment</stringProp>
+                      <stringProp name="-802955114">Open post</stringProp>
                     </collectionProp>
                   </ModuleController>
                   <hashTree/>
+                  <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Comment 20% Throughput Controller" enabled="true">
+                    <intProp name="ThroughputController.style">1</intProp>
+                    <boolProp name="ThroughputController.perThread">false</boolProp>
+                    <intProp name="ThroughputController.maxThroughput">1</intProp>
+                    <FloatProperty>
+                      <name>ThroughputController.percentThroughput</name>
+                      <value>20.0</value>
+                      <savedValue>0.0</savedValue>
+                    </FloatProperty>
+                  </ThroughputController>
+                  <hashTree>
+                    <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
+                      <intProp name="ActionProcessor.action">1</intProp>
+                      <intProp name="ActionProcessor.target">0</intProp>
+                      <stringProp name="ActionProcessor.duration">0</stringProp>
+                    </TestAction>
+                    <hashTree>
+                      <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                        <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
+                      </ConstantTimer>
+                      <hashTree/>
+                    </hashTree>
+                    <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Leave comment MC" enabled="true">
+                      <collectionProp name="ModuleController.node_path">
+                        <stringProp name="764597751">Test Plan</stringProp>
+                        <stringProp name="535912206">BlogEng_task6</stringProp>
+                        <stringProp name="170071582">Test Fragment</stringProp>
+                        <stringProp name="-1874239018">Leave comment</stringProp>
+                      </collectionProp>
+                    </ModuleController>
+                    <hashTree/>
+                  </hashTree>
                 </hashTree>
               </hashTree>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
                 <intProp name="ActionProcessor.target">0</intProp>
                 <stringProp name="ActionProcessor.duration">0</stringProp>
@@ -568,13 +681,13 @@ else
               <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Large calendar MC" enabled="true">
                 <collectionProp name="ModuleController.node_path">
                   <stringProp name="764597751">Test Plan</stringProp>
-                  <stringProp name="535912203">BlogEng_task3</stringProp>
+                  <stringProp name="535912206">BlogEng_task6</stringProp>
                   <stringProp name="170071582">Test Fragment</stringProp>
                   <stringProp name="336177945">Open Large calendar</stringProp>
                 </collectionProp>
               </ModuleController>
               <hashTree/>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
                 <intProp name="ActionProcessor.target">0</intProp>
                 <stringProp name="ActionProcessor.duration">0</stringProp>
@@ -651,17 +764,13 @@ else
                   <hashTree>
                     <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                       <collectionProp name="HeaderManager.headers">
-                        <elementProp name="Referer" elementType="Header">
-                          <stringProp name="Header.name">Referer</stringProp>
-                          <stringProp name="Header.value">http://epuakyiw1864t1.kyiv.epam.com/blog/calendar/default.aspx</stringProp>
-                        </elementProp>
                         <elementProp name="Accept-Language" elementType="Header">
                           <stringProp name="Header.name">Accept-Language</stringProp>
                           <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
                         </elementProp>
                         <elementProp name="Origin" elementType="Header">
                           <stringProp name="Header.name">Origin</stringProp>
-                          <stringProp name="Header.value">http://epuakyiw1864t1.kyiv.epam.com</stringProp>
+                          <stringProp name="Header.value">${PROTOCOL}://${HOST}</stringProp>
                         </elementProp>
                         <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
                           <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
@@ -725,15 +834,16 @@ else
                     <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get POST" enabled="true">
                       <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                       <stringProp name="RegexExtractor.refname">POST</stringProp>
-                      <stringProp name="RegexExtractor.regex">href=&quot;.*?(\/blog\/post.*?)&quot;</stringProp>
+                      <stringProp name="RegexExtractor.regex">${POST_RE}</stringProp>
                       <stringProp name="RegexExtractor.template">$1$</stringProp>
                       <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-                      <stringProp name="RegexExtractor.match_number">${__Random(0,1,)}</stringProp>
+                      <stringProp name="RegexExtractor.match_number">${__groovy(${__Random(1,100,)}&lt;65?0:1,)}</stringProp>
+                      <stringProp name="TestPlan.comments">probability of getting random post 65%</stringProp>
                     </RegexExtractor>
                     <hashTree/>
                   </hashTree>
                 </hashTree>
-                <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+                <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
                   <intProp name="ActionProcessor.action">1</intProp>
                   <intProp name="ActionProcessor.target">0</intProp>
                   <stringProp name="ActionProcessor.duration">0</stringProp>
@@ -745,61 +855,67 @@ else
                   <hashTree/>
                 </hashTree>
               </hashTree>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-                <intProp name="ActionProcessor.action">1</intProp>
-                <intProp name="ActionProcessor.target">0</intProp>
-                <stringProp name="ActionProcessor.duration">0</stringProp>
-              </TestAction>
-              <hashTree>
-                <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                  <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
-                </ConstantTimer>
-                <hashTree/>
-              </hashTree>
               <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Post present Open Post and Comment" enabled="true">
-                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;&amp;&amp;${__Random(1,100,)}&gt;20,)}</stringProp>
+                <stringProp name="IfController.condition">${__groovy(vars.get(&quot;POST&quot;)!=&quot;NOT_FOUND&quot;,)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Post MC" enabled="true">
-                  <collectionProp name="ModuleController.node_path">
-                    <stringProp name="764597751">Test Plan</stringProp>
-                    <stringProp name="535912203">BlogEng_task3</stringProp>
-                    <stringProp name="170071582">Test Fragment</stringProp>
-                    <stringProp name="-802955114">Open post</stringProp>
-                  </collectionProp>
-                </ModuleController>
-                <hashTree/>
-                <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-                  <intProp name="ActionProcessor.action">1</intProp>
-                  <intProp name="ActionProcessor.target">0</intProp>
-                  <stringProp name="ActionProcessor.duration">0</stringProp>
-                </TestAction>
+                <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open post 80% Throghput Controller" enabled="true">
+                  <intProp name="ThroughputController.style">1</intProp>
+                  <boolProp name="ThroughputController.perThread">false</boolProp>
+                  <intProp name="ThroughputController.maxThroughput">1</intProp>
+                  <FloatProperty>
+                    <name>ThroughputController.percentThroughput</name>
+                    <value>80.0</value>
+                    <savedValue>0.0</savedValue>
+                  </FloatProperty>
+                </ThroughputController>
                 <hashTree>
-                  <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                    <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
-                  </ConstantTimer>
-                  <hashTree/>
-                </hashTree>
-                <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Comment yes/no" enabled="true">
-                  <stringProp name="IfController.condition">${__groovy(${__Random(1,100,)}&gt;80,)}</stringProp>
-                  <boolProp name="IfController.evaluateAll">false</boolProp>
-                  <boolProp name="IfController.useExpression">true</boolProp>
-                </IfController>
-                <hashTree>
-                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Leave comment MC" enabled="true">
+                  <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Post MC" enabled="true">
                     <collectionProp name="ModuleController.node_path">
                       <stringProp name="764597751">Test Plan</stringProp>
-                      <stringProp name="535912203">BlogEng_task3</stringProp>
+                      <stringProp name="535912206">BlogEng_task6</stringProp>
                       <stringProp name="170071582">Test Fragment</stringProp>
-                      <stringProp name="-1874239018">Leave comment</stringProp>
+                      <stringProp name="-802955114">Open post</stringProp>
                     </collectionProp>
                   </ModuleController>
                   <hashTree/>
+                  <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Comment 20% Throughput Controller" enabled="true">
+                    <intProp name="ThroughputController.style">1</intProp>
+                    <boolProp name="ThroughputController.perThread">false</boolProp>
+                    <intProp name="ThroughputController.maxThroughput">1</intProp>
+                    <FloatProperty>
+                      <name>ThroughputController.percentThroughput</name>
+                      <value>20.0</value>
+                      <savedValue>0.0</savedValue>
+                    </FloatProperty>
+                  </ThroughputController>
+                  <hashTree>
+                    <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
+                      <intProp name="ActionProcessor.action">1</intProp>
+                      <intProp name="ActionProcessor.target">0</intProp>
+                      <stringProp name="ActionProcessor.duration">0</stringProp>
+                    </TestAction>
+                    <hashTree>
+                      <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                        <stringProp name="ConstantTimer.delay">${DELAY}</stringProp>
+                      </ConstantTimer>
+                      <hashTree/>
+                    </hashTree>
+                    <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Leave comment MC" enabled="true">
+                      <collectionProp name="ModuleController.node_path">
+                        <stringProp name="764597751">Test Plan</stringProp>
+                        <stringProp name="535912206">BlogEng_task6</stringProp>
+                        <stringProp name="170071582">Test Fragment</stringProp>
+                        <stringProp name="-1874239018">Leave comment</stringProp>
+                      </collectionProp>
+                    </ModuleController>
+                    <hashTree/>
+                  </hashTree>
                 </hashTree>
               </hashTree>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
                 <intProp name="ActionProcessor.target">0</intProp>
                 <stringProp name="ActionProcessor.duration">0</stringProp>
@@ -861,7 +977,7 @@ else
                 </HeaderManager>
                 <hashTree/>
               </hashTree>
-              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+              <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Timer" enabled="true">
                 <intProp name="ActionProcessor.action">1</intProp>
                 <intProp name="ActionProcessor.target">0</intProp>
                 <stringProp name="ActionProcessor.duration">0</stringProp>
@@ -891,7 +1007,7 @@ else
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-            <stringProp name="HTTPSampler.path">${PAGE}</stringProp>
+            <stringProp name="HTTPSampler.path">/blog/?page=${PAGE}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -930,10 +1046,11 @@ else
             <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get POST" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">POST</stringProp>
-              <stringProp name="RegexExtractor.regex">href=&quot;(.*?\/post(?!.*?[\#\?].*?).*?)&quot;</stringProp>
+              <stringProp name="RegexExtractor.regex">${POST_RE}</stringProp>
               <stringProp name="RegexExtractor.template">$1$</stringProp>
               <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
               <stringProp name="RegexExtractor.match_number">${__groovy(${__Random(1,100,)}&lt;65?0:1,)}</stringProp>
+              <stringProp name="TestPlan.comments">probability of getting random post 65%</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
@@ -974,10 +1091,11 @@ else
             <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get POST" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">POST</stringProp>
-              <stringProp name="RegexExtractor.regex">href=&quot;(.*?\/post(?!.*?[\#\?].*?).*?)&quot;</stringProp>
+              <stringProp name="RegexExtractor.regex">${POST_RE}</stringProp>
               <stringProp name="RegexExtractor.template">$1$</stringProp>
               <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
               <stringProp name="RegexExtractor.match_number">${__groovy(${__Random(1,100,)}&lt;65?0:1,)}</stringProp>
+              <stringProp name="TestPlan.comments">probability of getting random post 65%</stringProp>
             </RegexExtractor>
             <hashTree/>
             <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
@@ -1103,10 +1221,11 @@ else
             <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get POST" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">POST</stringProp>
-              <stringProp name="RegexExtractor.regex">href=&quot;.*?(\/blog\/post.*?)&quot;</stringProp>
+              <stringProp name="RegexExtractor.regex">${POST_RE}</stringProp>
               <stringProp name="RegexExtractor.template">$1$</stringProp>
               <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
               <stringProp name="RegexExtractor.match_number">${__groovy(${__Random(1,100,)}&lt;65?0:1,)}</stringProp>
+              <stringProp name="TestPlan.comments">probability of getting random post 65%</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
@@ -1172,10 +1291,11 @@ else
             <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get POST" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">POST</stringProp>
-              <stringProp name="RegexExtractor.regex">href=&quot;(.*?\/post(?!.*?[\#\?].*?).*?)&quot;</stringProp>
+              <stringProp name="RegexExtractor.regex">${POST_RE}</stringProp>
               <stringProp name="RegexExtractor.template">$1$</stringProp>
               <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
               <stringProp name="RegexExtractor.match_number">${__groovy(${__Random(1,100,)}&lt;65?0:1,)}</stringProp>
+              <stringProp name="TestPlan.comments">probability of getting random post 65%</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
@@ -1193,7 +1313,7 @@ else
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">${POST}</stringProp>
+            <stringProp name="HTTPSampler.path">/blog/post/${POST}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -1374,7 +1494,7 @@ else
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-            <stringProp name="HTTPSampler.path">${POST}</stringProp>
+            <stringProp name="HTTPSampler.path">/blog/post/${POST}</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -1393,7 +1513,7 @@ else
                 </elementProp>
                 <elementProp name="Origin" elementType="Header">
                   <stringProp name="Header.name">Origin</stringProp>
-                  <stringProp name="Header.value">http://epuakyiw1864t1.kyiv.epam.com</stringProp>
+                  <stringProp name="Header.value">${PROTOCOL}://${HOST}</stringProp>
                 </elementProp>
                 <elementProp name="Content-Type" elementType="Header">
                   <stringProp name="Header.name">Content-Type</stringProp>
@@ -1477,10 +1597,11 @@ else
             <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get POST" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">POST</stringProp>
-              <stringProp name="RegexExtractor.regex">href=&quot;(.*?\/post(?!.*?[\#\?].*?).*?)&quot;</stringProp>
+              <stringProp name="RegexExtractor.regex">${POST_RE}</stringProp>
               <stringProp name="RegexExtractor.template">$1$</stringProp>
               <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
               <stringProp name="RegexExtractor.match_number">${__groovy(${__Random(1,100,)}&lt;65?0:1,)}</stringProp>
+              <stringProp name="TestPlan.comments">probability of getting random post 65%</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
@@ -1545,10 +1666,11 @@ else
             <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get POST" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">POST</stringProp>
-              <stringProp name="RegexExtractor.regex">href=&quot;.*?(\/blog\/post.*?)&quot;</stringProp>
+              <stringProp name="RegexExtractor.regex">${POST_RE}</stringProp>
               <stringProp name="RegexExtractor.template">$1$</stringProp>
               <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
               <stringProp name="RegexExtractor.match_number">${__groovy(${__Random(1,100,)}&lt;65?0:1,)}</stringProp>
+              <stringProp name="TestPlan.comments">probability of getting random post 65%</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
@@ -1850,7 +1972,7 @@ else
             </elementProp>
             <elementProp name="percentiles" elementType="Argument">
               <stringProp name="Argument.name">percentiles</stringProp>
-              <stringProp name="Argument.value">99;95;90</stringProp>
+              <stringProp name="Argument.value">99;95;90;50</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="testTitle" elementType="Argument">
@@ -1868,7 +1990,7 @@ else
         <stringProp name="classname">org.apache.jmeter.visualizers.backend.influxdb.InfluxdbBackendListenerClient</stringProp>
       </BackendListener>
       <hashTree/>
-      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="false">
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
