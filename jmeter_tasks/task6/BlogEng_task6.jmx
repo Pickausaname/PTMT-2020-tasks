@@ -69,6 +69,7 @@
             <stringProp name="Argument.name">DELAY</stringProp>
             <stringProp name="Argument.value">${__P(DELAY,3000)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">ms</stringProp>
           </elementProp>
           <elementProp name="POST_RE" elementType="Argument">
             <stringProp name="Argument.name">POST_RE</stringProp>
@@ -161,7 +162,7 @@ else if (a&gt;15&amp;&amp;a&lt;=25)
 	}
 else if (a&gt;25&amp;&amp;a&lt;=55)
 	{
-		vars.put(&quot;SWITCH&quot;,&quot;Open Pre Date&quot;)
+		vars.put(&quot;SWITCH&quot;,&quot;Open date&quot;)
 	}
 else if (a&gt;55&amp;&amp;a&lt;=85)
 	{
@@ -449,7 +450,7 @@ SampleResult.setIgnore()</stringProp>
                 <hashTree/>
               </hashTree>
             </hashTree>
-            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Open Pre Date" enabled="true"/>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Open date" enabled="true"/>
             <hashTree>
               <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open Date MC" enabled="true">
                 <collectionProp name="ModuleController.node_path">
