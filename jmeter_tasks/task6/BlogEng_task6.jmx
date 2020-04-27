@@ -41,12 +41,12 @@
           </elementProp>
           <elementProp name="NUMBER_OF_THREADS" elementType="Argument">
             <stringProp name="Argument.name">NUMBER_OF_THREADS</stringProp>
-            <stringProp name="Argument.value">${__P(NUMBER_OF_THREADS,300)}</stringProp>
+            <stringProp name="Argument.value">${__P(NUMBER_OF_THREADS,2)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="RAMP_UP" elementType="Argument">
             <stringProp name="Argument.name">RAMP_UP</stringProp>
-            <stringProp name="Argument.value">${__P(RAMP_UP,3600)}</stringProp>
+            <stringProp name="Argument.value">${__P(RAMP_UP,1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="LOOP_COUNT" elementType="Argument">
@@ -56,7 +56,7 @@
           </elementProp>
           <elementProp name="DURATION" elementType="Argument">
             <stringProp name="Argument.name">DURATION</stringProp>
-            <stringProp name="Argument.value">${__P(DURATION,3600)}</stringProp>
+            <stringProp name="Argument.value">${__P(DURATION,600)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="PAGE_RE" elementType="Argument">
@@ -75,6 +75,42 @@
             <stringProp name="Argument.name">POST_RE</stringProp>
             <stringProp name="Argument.value">a href=&quot;\/blog\/post\/(.*?)&quot;</stringProp>
             <stringProp name="Argument.desc">regular expression to find post name</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="HOME_PAGE" elementType="Argument">
+            <stringProp name="Argument.name">HOME_PAGE</stringProp>
+            <stringProp name="Argument.value">15</stringProp>
+            <stringProp name="Argument.desc">%</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="RANDOM_DATE" elementType="Argument">
+            <stringProp name="Argument.name">RANDOM_DATE</stringProp>
+            <stringProp name="Argument.value">10</stringProp>
+            <stringProp name="Argument.desc">%</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="PREDEFINED_DATE" elementType="Argument">
+            <stringProp name="Argument.name">PREDEFINED_DATE</stringProp>
+            <stringProp name="Argument.value">30</stringProp>
+            <stringProp name="Argument.desc">%</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="SEARCH_BY_NAME" elementType="Argument">
+            <stringProp name="Argument.name">SEARCH_BY_NAME</stringProp>
+            <stringProp name="Argument.value">30</stringProp>
+            <stringProp name="Argument.desc">%</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="LARGE_CALENDAR" elementType="Argument">
+            <stringProp name="Argument.name">LARGE_CALENDAR</stringProp>
+            <stringProp name="Argument.value">10</stringProp>
+            <stringProp name="Argument.desc">%</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="CONTACT_PAGE" elementType="Argument">
+            <stringProp name="Argument.name">CONTACT_PAGE</stringProp>
+            <stringProp name="Argument.value">5</stringProp>
+            <stringProp name="Argument.desc">%</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -152,29 +188,18 @@
             <stringProp name="parameters"></stringProp>
             <stringProp name="script">//Get random int to hit in some range to choose page with some probability
 a=${__Random(1,100,)}
-if (a&lt;=15)
+def ListOfProb = [${HOME_PAGE},${RANDOM_DATE},${PREDEFINED_DATE},${SEARCH_BY_NAME},${LARGE_CALENDAR},${CONTACT_PAGE}]
+def ListOfPages=[&quot;Open Home page&quot;,&quot;Open Random Date&quot;,&quot;Open date&quot;,&quot;Search by name&quot;,&quot;Open Large Calendar&quot;,&quot;Open Contacts Page&quot;]
+int counter
+for (iteration in 0..ListOfProb.size()-1)
 	{
-		vars.put(&quot;SWITCH&quot;,&quot;Open Home page&quot;)
-	}
-else if (a&gt;15&amp;&amp;a&lt;=25)
-	{
-		vars.put(&quot;SWITCH&quot;,&quot;Open Random Date&quot;)
-	}
-else if (a&gt;25&amp;&amp;a&lt;=55)
-	{
-		vars.put(&quot;SWITCH&quot;,&quot;Open date&quot;)
-	}
-else if (a&gt;55&amp;&amp;a&lt;=85)
-	{
-		vars.put(&quot;SWITCH&quot;,&quot;Search by name&quot;)
-	}
-else if (a&gt;85&amp;&amp;a&lt;=95)
-	{
-		vars.put(&quot;SWITCH&quot;,&quot;Open Large Calendar&quot;)
-	}
-else
-	{
-		vars.put(&quot;SWITCH&quot;,&quot;Open Contacts Page&quot;)
+		counter+=ListOfProb[iteration].toInteger()
+		if(a&lt;=counter)
+			{
+				vars.put(&quot;SWITCH&quot;,ListOfPages[iteration])
+				break
+			}
+		
 	}
 SampleResult.setIgnore()</stringProp>
             <stringProp name="scriptLanguage">groovy</stringProp>
